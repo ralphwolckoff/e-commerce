@@ -13,19 +13,6 @@ export interface Images {
   productId: string;
 }
 
-// export interface Product {
-//   id: string;
-//   createdAt: string;
-//   updatedAt: string;
-//   name: string;
-//   description?: string;
-//   images: Images[];
-//   price: number;
-//   stock: number;
-//   authorId: string;
-//   category: Category;
-// }
-
 export type ProductCreationPayload = {
   name: string;
   description?: string;

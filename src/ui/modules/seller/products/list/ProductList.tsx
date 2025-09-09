@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect, use } from "react";
+import React, { useState, useEffect } from "react";
 import { Product, ProductSortKey } from "@/types/products";
 import { productService } from "@/services/productService";
 import { toast } from "react-toastify";
@@ -19,7 +19,6 @@ import { useCategoryStore } from "@/store/categoryStore";
 export default function ProductList() {
   const [allProducts, setAllProducts] = useState<Product[]>([]);
   const [displayedProducts, setDisplayedProducts] = useState<Product[]>([]);
-  const [loadingProducts, setLoadingProducts] = useState(true);
   const [loading, setLoading] = useState(true);
   const [categories, setCategories] = useState<Category[]>([]);
   const [selectedCategory, setSelectedCategory] = useState<string>("");
@@ -43,10 +42,10 @@ export default function ProductList() {
         console.error("Failed to fetch products:", err);
         toast.error("Failed to load products.");
       } finally {
-        setLoadingProducts(false);
+        setLoading(false);
       }
     } else if (loading) {
-      setLoadingProducts(false);
+      setLoading(false);
       toast.error("You must be logged in to view your products.");
     }
   };

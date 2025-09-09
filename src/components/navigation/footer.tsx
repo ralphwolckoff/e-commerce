@@ -1,12 +1,9 @@
 "use client";
 
 import { Typography } from "@/ui/design/typography/Typography";
-import Image from "next/image";
 import Link from "next/link";
 import { RiShoppingCartLine } from "react-icons/ri";
 import { SocialNetwokbuttons } from "./social-networks-buttons";
-import { useEffect, useState } from "react";
-import { useAuth } from "@/context/AuthContext";
 
 
 export default function Footer() {

@@ -11,7 +11,7 @@ import { useImageStore } from "@/store/imageStore";
 
 
 export const PersonalInformationSection = () => {
-   const { value: isLoading, setValue: setIsLoading } = useToggle({
+   const { value: isLoading} = useToggle({
      initial: false,
    });
   const [showPersonalModal, setShowPersonalModal] = useState(false);

@@ -1,6 +1,5 @@
 import { create } from "zustand";
 import { persist, createJSONStorage } from "zustand/middleware";
-import { PersonalInfo } from "@/components/MyAccount/edit/edit-personal-infoModal";
 import { Profile, User } from "@/types/user";
 
 interface AuthState {

@@ -11,7 +11,7 @@ export function TestimonialsSection() {
       rating: 5,
       comment:
         "They have got a commitment to excellence and a team that truly cares about their work and their customers.",
-      avatar: profile?.avatarUrl || "/assets/imgs/character-1.png",
+      avatar: profile?.photoUrl || "/assets/imgs/character-1.png",
     },
     {
       name: "Tom Hanks",
@@ -19,7 +19,7 @@ export function TestimonialsSection() {
       rating: 4,
       comment:
         "This team is truly talented and great to work with. They are always professional and on time.",
-      avatar: profile?.avatarUrl || "/assets/imgs/character-1.png",
+      avatar: profile?.photoUrl || "/assets/imgs/character-1.png",
     },
     {
       name: "Darth Vader",
@@ -27,7 +27,7 @@ export function TestimonialsSection() {
       rating: 5,
       comment:
         "Amazing work! This team is truly talented and great to work with. Highly recommended.",
-      avatar: profile?.avatarUrl || "/assets/imgs/character-1.png",
+      avatar: profile?.photoUrl || "/assets/imgs/character-1.png",
     },
   ];
 

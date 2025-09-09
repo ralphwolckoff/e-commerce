@@ -8,7 +8,6 @@ export default function DashboardPage() {
   return (
     <>
       <Seo title="mon espace" description="account" />
-
       <UserLayout withSidebar pageTitle="Seller Page">
         <SellerDashboardPage />
       </UserLayout>

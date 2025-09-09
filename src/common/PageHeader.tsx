@@ -1,10 +1,7 @@
-import { Breadcrumbs } from "@/components/breadcrumbs/breadcrumbs";
 import { useStoreStore } from "@/store/storeStore";
 import { Typography } from "@/ui/design/typography/Typography";
 import clsx from "clsx";
 import Image from "next/image";
-import Link from "next/link";
-import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 
 
@@ -33,12 +30,6 @@ export default function PageHeader() {
       }`
       )}
     >
-      {/* <Image
-        fill
-        src="/assets/imgs/sumner-mahaffey.jpg"
-        alt="illustration precise"
-        className="relative z-10 overflow-hidden"
-      /> */}
       <div className="relative z-10 flex flex-col items-center gap-4 mx-auto px-4">
         <div className="relative h-[100px] w-[100px] rounded-full">
           <Image

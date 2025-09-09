@@ -11,15 +11,7 @@ export const RegisterForm = ({ form }: Props) => {
   const { onSubmit, register, errors, isLoading, handleSubmit } = form;
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="pt-8 pb-5 space-y-4">
-      {/* <Input
-        isLoading={isLoading}
-        type="text"
-        placeholder="Nom d'utilisateur"
-        register={register}
-        errors={errors}
-        errorMsg="tu dois renseigner ce champ"
-        id="username"
-      /> */}
+      
       <Input
         isLoading={isLoading}
         type="email"

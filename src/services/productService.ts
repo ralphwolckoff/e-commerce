@@ -1,7 +1,6 @@
 import { Product, ProductCreationPayload, ProductUpdatePayload } from "@/types/products";
 import api from "./api";
 import { useProductStore } from "@/store/productStore";
-import { useAuthStore } from "@/store/authStore";
 import { AxiosRequestConfig } from "axios";
 
 

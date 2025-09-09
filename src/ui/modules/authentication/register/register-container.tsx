@@ -3,15 +3,10 @@ import { RegisterView } from "./register.view";
 import { RegisterFormType } from "@/types/form";
 import { toast } from "react-toastify";
 import { useToggle } from "@/hooks/use-toggle";
-import { useRouter } from "next/router";
-import z from "zod";
-import api from "@/services/api";
-import { Role } from "@/common/role.enum";
 import { AxiosError } from "axios";
 import { AuthService } from "@/services/authService";
 
 export const RegisterContainer = () => {
-  const router = useRouter();
   const { value: isLoading, setValue: setIsLoading } = useToggle({
     initial: false,
   });
@@ -19,8 +14,6 @@ export const RegisterContainer = () => {
     handleSubmit,
     formState: { errors },
     register,
-    setError,
-    reset,
   } = useForm<RegisterFormType>();
 
   const handleCreateUserAuthentication = async ({

@@ -1,11 +1,6 @@
 import {
   EditIcon,
-  FacebookIcon,
-  TwitterIcon,
-  LinkedInIcon,
-  InstagramIcon,
 } from "@/components/icons";
-import { PersonalInfo } from "../edit/edit-personal-infoModal";
 import { useAuthStore } from "@/store/authStore";
 import { Typography } from "@/ui/design/typography/Typography";
 

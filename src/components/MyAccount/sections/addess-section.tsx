@@ -21,8 +21,6 @@ export const AddressSection = () => {
        handleSubmit,
        formState: { errors },
        register,
-       setError,
-       reset,
      } = useForm<Address>();
 
   const onEditAddress = () => {

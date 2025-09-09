@@ -2,7 +2,6 @@ import { v4 as uuidv4 } from "uuid";
 import { RiFacebookFill } from "react-icons/ri";
 import clsx from "clsx";
 import { Button } from "@/ui/design/button/button";
-import Link from "next/link";
 import { footerSocialNetwordLinks } from "./applinks";
 
 interface Props {

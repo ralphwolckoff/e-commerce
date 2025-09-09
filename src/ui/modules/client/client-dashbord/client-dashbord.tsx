@@ -1,7 +1,6 @@
 import { Status } from "@/common/status.enum";
 import { useAuth } from "@/context/AuthContext";
 import { orderService } from "@/services/orderService";
-import { useAuthStore } from "@/store/authStore";
 import { useOrdersStore } from "@/store/orderStore";
 import { Order } from "@/types/commands";
 import { Typography } from "@/ui/design/typography/Typography";

@@ -6,7 +6,6 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Order } from "@/types/commands";
 import { useStoreStore } from "@/store/storeStore";
-import { Status } from "@/common/status.enum";
 import SellerOrderCard from "@/ui/modules/seller/orders/SellerOrderCard";
 import { useOrdersStore } from "@/store/orderStore";
 

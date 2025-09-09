@@ -5,16 +5,6 @@ import { Address } from "./address";
 import { User } from "./user";
 import { Categorie } from "./category";
 
-// export interface Order {
-//   id: string;
-//   storeId: string;
-//   orderStatus: Status;
-//   createdAt: Date;
-//   updatedAt: Date;
-//   store?: Store;
-//   orderItems?: OrderItem[];
-// }
-
 export interface OrderItem {
   id: string;
   orderId: string;

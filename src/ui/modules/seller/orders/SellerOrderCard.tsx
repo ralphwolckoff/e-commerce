@@ -2,7 +2,6 @@
 
 
 import React, { useState } from "react";
-import Link from "next/link";
 import Image from "next/image";
 import { format } from "date-fns";
 import { Button } from "@/ui/design/button/button";

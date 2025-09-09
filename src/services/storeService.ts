@@ -3,7 +3,6 @@ import api from "./api"; // Importation de l'instance Axios configurée
 import { Store, StoreWithProducts } from "@/types/store";
 import { handleApiError } from "@/utils/handleApiError";
 import { OnboardingFormFeildType } from "@/types/form";
-import { useAuthStore } from "@/store/authStore";
 
 export const storeService = {
   createStore: async (data: OnboardingFormFeildType): Promise<Store> => {

@@ -13,7 +13,6 @@ import { storeService } from "@/services/storeService";
 import { toast } from "react-toastify";
 import { AxiosError } from "axios";
 import { useStoreStore } from "@/store/storeStore";
-import { useEffect } from "react";
 
 export const ProfileStep = ({
   next,

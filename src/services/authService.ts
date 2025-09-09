@@ -102,10 +102,8 @@ import {
   RegisterFormType,
   ResetPasswordFormType,
   UpdateUserFormType,
-  UpdateUserProfileFormType,
 } from "@/types/form";
 import { AxiosError } from "axios";
-import { error } from "console";
 import { PersonalInfo } from "@/components/MyAccount/edit/edit-personal-infoModal";
 import { useStoreStore } from "@/store/storeStore";
 import { UpdateProfile } from "@/types/user";
@@ -134,16 +132,6 @@ export const AuthService = {
       throw error;
     }
   },
-
-  // logout: async () => {
-  //   try {
-  //     await api.post("/auth/logout");
-  //     useAuthStore.getState().logout();
-  //   } catch (error: any) {
-  //     toast.error("Logout failed:", error.response?.data || error.message);
-  //     throw error;
-  //   }
-  // },
 
   
   requestPasswordReset: async (email: ForgetPasswordFormType) => {
@@ -209,15 +197,11 @@ export const AuthService = {
 
       useAuthStore.getState().logout()
       useCartStore.getState().clearCart()
-
-      await api.post("/auth/logout");
-
-      
-      toast.success("Vous avez été déconnecté avec succès.");
+            
+     toast.success("Vous avez été déconnecté avec succès.");
     } catch (error ) {
       const axioError = error as AxiosError;
       console.error("Logout failed:", axioError.response?.data || axioError.message);
-      // toast.error("Échec de la déconnexion côté serveur.");
     }
   },
 };

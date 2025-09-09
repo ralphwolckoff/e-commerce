@@ -1,6 +1,5 @@
 import clsx from "clsx";
 import { Typography } from "../typography/Typography";
-import { Role } from "@/common/role.enum";
 
 interface Props {
     children:React.ReactNode;

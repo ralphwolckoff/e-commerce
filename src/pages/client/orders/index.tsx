@@ -36,10 +36,6 @@ export default function OrderManagementPage() {
     fetchVendorOrders();
   }, []);
 
-  // if (loading) {
-  //   return <div className="text-center py-10">Chargement des commandes...</div>;
-  // }
-
   if (orders.length === 0) {
     return (
       <div className="text-center py-10">

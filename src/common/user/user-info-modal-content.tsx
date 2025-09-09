@@ -7,7 +7,7 @@ import { toast } from "react-toastify";
 import { useRouter } from "next/router";
 import { Role } from "../role.enum";
 import { useAuth } from "@/context/AuthContext";
-import { LogoutIcon, LogoutIcon2 } from "@/components/icons";
+import { LogoutIcon2 } from "@/components/icons";
 
 export default function UserInfoModalContent() {
   const { user, profile } = useAuthStore();

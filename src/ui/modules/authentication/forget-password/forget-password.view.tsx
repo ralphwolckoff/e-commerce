@@ -1,52 +1,8 @@
-// import Link from "next/link";
-// import Image from "next/image";
-// import { Container } from "@/ui/components/container/container";
-// import { ForgetPasswordForm } from "./forget-password.form";
-// import { FormsType } from "@/types/form";
-// import { Box } from "@/ui/design/box/box";
-// import { Typography } from "@/ui/design/typography/Typography";
-
-// interface Props {
-//   form: FormsType;
-// }
-// export const ForgetPasswordView = ({ form }: Props) => {
-//   return (
-//     <Container className="grid grid-cols-2 gap-20 mb-32">
-//       <div className="">
-//         <div className="relative w-full h-[531px]">
-//           <Image
-//             fill
-//             src="/assets/imgs/character-2.png"
-//             alt="description de l'illustration..."
-//             className="object-scale-down"
-//           />
-//         </div>
-//       </div>
-//       <div className=" flex items-center">
-//         <Box padding_y="px-5">
-//           <div className="flex items-center justify-between">
-//             <Typography variant="h5" component="h1">
-//               Mot de passe perdu ?
-//             </Typography>
-//             <Typography variant="caption4" component="span" theme="secondary">
-//               <Link href="/connexion">Connexion</Link>
-//             </Typography>
-//           </div>
-//           <ForgetPasswordForm form={form} />
-//         </Box>
-//       </div>
-//     </Container>
-//   );
-// };
-
-
 "use client";
 
 import { useForm, SubmitHandler } from "react-hook-form";
 import { useState } from "react";
 import { toast } from "react-toastify";
-import { useRouter } from "next/router";
-// Supposons que vous ayez un service d'authentification pour les appels API
 import { AuthService } from "@/services/authService";
 import { ForgetPasswordFormType } from "@/types/form";
 import { AxiosError } from "axios";
@@ -55,7 +11,6 @@ import { AxiosError } from "axios";
 
 export default function ForgotPasswordPage() {
   const [isLoading, setIsLoading] = useState(false);
-  const router = useRouter();
 
   // Utilisation de react-hook-form pour gérer le formulaire
   const {

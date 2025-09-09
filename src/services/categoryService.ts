@@ -1,13 +1,9 @@
 
-import { handleApiError } from "@/utils/handleApiError";
 import api from "./api"; 
 import { AxiosError } from "axios";
 import { Categorie } from "@/types/category";
 
-interface Category {
-  id: string;
-  name: string;
-}
+
 
 interface CreateCategoryPayload {
   name: string;

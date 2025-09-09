@@ -4,8 +4,6 @@ import { Modal } from "./modal";
 import { Status } from "@/common/status.enum";
 import { Order } from "@/types/commands";
 import Image from "next/image";
-import { toast } from "react-toastify";
-import { orderService } from "@/services/orderService";
 import { Button } from "@/ui/design/button/button";
 
 interface StatusUpdateModalProps {

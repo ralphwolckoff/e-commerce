@@ -2,7 +2,7 @@ import { Breadcrumbs } from "../breadcrumbs/breadcrumbs";
 import Sidebar from "../dashboard/Sidebar";
 import PageHeader from "@/common/PageHeader";
 import ServiceFeatures from "@/common/features/ServiceFeatures";
-import { Session, SessionStatusType } from "../session/session";
+import { Session} from "../session/session";
 import { REGISTERED } from "@/lib/session-status";
 import Header from "@/common/user/user-header";
 import { useAuth } from "@/context/AuthContext";

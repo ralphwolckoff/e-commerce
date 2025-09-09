@@ -9,13 +9,10 @@ import { Button } from "@/ui/design/button/button";
 import { UserLayout } from "@/components/layout/user-layout";
 import { useAddressStore } from "@/store/addressStore";
 import { useAuth } from "@/context/AuthContext";
-import { useStoreStore } from "@/store/storeStore";
-import { useProductStore } from "@/store/productStore";
 
 export default function CheckoutPage() {
   const {address} = useAddressStore()
   const {authUser} = useAuth()
-  const {products} = useProductStore()
   const [isLoading, setIsLoading] = useState(false);
   const {
     items: cartItems,

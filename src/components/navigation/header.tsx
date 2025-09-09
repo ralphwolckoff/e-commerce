@@ -2,7 +2,7 @@ import { Button } from "@/ui/design/button/button";
 import { RiShoppingCartLine } from "react-icons/ri";
 import { Typography } from "@/ui/design/typography/Typography";
 import { ActiveLink } from "./active-link";
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 import { useAuthStore } from "@/store/authStore";
 import { AccountAvatarNavigationLink } from "./account-avatar-navigation-link";
 import Modal from "@/common/Modal";

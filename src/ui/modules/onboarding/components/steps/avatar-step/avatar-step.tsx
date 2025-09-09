@@ -7,14 +7,12 @@ import { Typography } from "@/ui/design/typography/Typography";
 import { BaseComponentProps } from "@/types/onboarding-step-list";
 import { UploadImage } from "@/components/upload-avatar/upload-image";
 import Image from "next/image";
-import { useAuth } from "@/context/AuthContext";
 import { useStoreStore } from "@/store/storeStore";
 import { storeService } from "@/services/storeService";
 
 export const AvatarStep = ({
   next,
   prev,
-  isFirstStep,
   isFinalStep,
   stepList,
   getCurrentStep,

@@ -1,8 +1,7 @@
-import React, { useRef, useEffect, useState } from "react";
-import { Order, OrderItem } from "@/types/commands";
+import React from "react";
+import { Order} from "@/types/commands";
 import Image from "next/image";
 import { format } from "date-fns";
-import { Button } from "@/ui/design/button/button";
 import { Modal } from "../../../../components/MyAccount/modal";
 
 interface OrderModalProps {

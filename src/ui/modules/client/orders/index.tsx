@@ -1,9 +1,7 @@
-import { FilterIcon } from "@/components/icons";
 import OrderDetailModal from "@/ui/modules/client/orders/OrderModal";
 import { Order } from "@/types/commands";
 import { Button } from "@/ui/design/button/button";
 import { format } from "date-fns";
-import Image from "next/image";
 import { useState } from "react";
 
 interface ClientProps {

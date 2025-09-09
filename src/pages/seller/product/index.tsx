@@ -7,7 +7,6 @@ import { UserLayout } from "@/components/layout/user-layout";
 import { useProductStore } from "@/store/productStore";
 
 export default function ProductManagementPage() {
-  // useAuthRedirect({ isPublicPage: false, allowedRoles: Role.VENDOR });
   const { products } = useProductStore();
 
   return (

@@ -1,7 +1,4 @@
 import Link from "next/link";
-
-import { RiHome2Line } from "react-icons/ri";
-import { RegisterForm } from "../register/register.form";
 import Image from "next/image";
 import { Container } from "@/components/container/container";
 import { LoginForm } from "./login.form";

@@ -3,7 +3,6 @@ import { CartModalProvider } from "@/context/CartSidebarModalContext";
 import { ModalProvider } from "@/context/QuickViewModalContext";
 import "@/styles/globals.css";
 import ScrollToTop from "@/ui/design/avatars/ScrollToTop";
-import { LoadingOverlay } from "@/ui/design/spinner/loader";
 import PreLoader from "@/ui/design/spinner/PreLoader";
 import type { AppProps } from "next/app";
 import { useState, useEffect } from "react";

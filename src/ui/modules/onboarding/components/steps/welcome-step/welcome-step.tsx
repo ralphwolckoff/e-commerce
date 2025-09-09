@@ -8,8 +8,6 @@ export const WelcomeStep = ({
   next,
   isFirstStep,
   isFinalStep,
-  stepList,
-  getCurrentStep,
 }: BaseComponentProps) => {
   const { profile } = useAuthStore();
 

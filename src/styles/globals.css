@@ -1,42 +1,138 @@
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@import "tailwindcss";
+/* @plugin "daisyui"; */
+
+@theme {
+
+  /* --background-image: dot-pattern-light : radial-gradient(circle, #d1d5db 1px, transparent 1px);
+  --background-size: dot-pattern : 20px 20px; */
+
+  --color-alert-danger: oklch(50.5% 0.213 27.518);
+  --color-alert-success: oklch(42.4% 0.199 265.638);
+  --color-alert-warning: oklch(79.5% 0.184 86.047);
+
+  
+  
+  --color-primary-50: oklch(0.977 0.014 308.299);
+  --color-primary-100: oklch(0.946 0.033 307.174);
+  --color-primary-200: oklch(0.902 0.063 306.703);
+  --color-primary-300: oklch(0.827 0.119 306.383);
+  --color-primary-400: oklch(0.714 0.203 305.504);
+  --color-primary-500: oklch(0.627 0.265 303.9);
+  --color-primary-600: oklch(0.558 0.288 302.321);
+  --color-primary-700: oklch(0.496 0.265 301.924);
+  --color-primary-800: oklch(0.438 0.218 303.724);
+  --color-primary-900: oklch(0.381 0.176 304.987);
+  --color-primary: oklch(0.291 0.149 302.717);
+  
+  --color-secondary-50: oklch(0.982 0.018 155.826);
+  --color-secondary-100: oklch(0.962 0.044 156.743);
+  --color-secondary-200: oklch(0.925 0.084 155.995);
+  --color-secondary-300: oklch(0.871 0.15 154.449);
+  --color-secondary-400: oklch(0.792 0.209 151.711);
+  --color-secondary-500: oklch(0.723 0.219 149.579);
+  --color-secondary: oklch(0.627 0.194 149.214);
+  --color-secondary-700: oklch(0.527 0.154 150.069);
+  --color-secondary-800: oklch(0.448 0.119 151.328);
+  --color-secondary-900: oklch(0.393 0.095 152.535);
+  --color-secondary-950: oklch(0.266 0.065 152.934);
+
+  --color-gray-50: oklch(98.5% 0.002 247.839);
+  --color-gray-100: oklch(0.967 0.003 264.542);
+  --color-gray-200: oklch(0.928 0.006 264.531);
+  --color-gray-300: oklch(0.872 0.01 258.338);
+  --color-gray-400: oklch(0.707 0.022 261.325);
+  --color-gray: oklch(0.551 0.027 264.364);
+  --color-gray-600: oklch(0.446 0.03 256.802);
+  --color-gray-700: oklch(0.373 0.034 259.733);
+  --color-gray-800: oklch(0.278 0.033 256.848);
+  --color-gray-900: oklch(0.21 0.034 264.665);
+  --color-gray-950: oklch(0.13 0.028 261.692);
+
+  --text-8xl: 120px;
+  --text-8xl-lineHeight: 120px;
+  --text-8xl-letterSpacing: -6px;
+  --text-8xl-fontWeight: 500;
+
+  --text-7xl: 72px;
+  --text-7xl-line-height: 80px;
+  --text-7xl-letter-spacing: -4.5px;
+  --text-7xl-font-weight: 600;
+
+  --text-6xl: 55px;
+  --text-6xl-lineHeight: 55px;
+  --text-6xl-letterSpacing: -2.5px;
+  --text-6xl-fontWeight: 500;
+
+  --text-5xl: 48px;
+  --text-5xl-lineHeight: 54px;
+  --text-5xl-letterSpacing: -1.600000023841858px;
+  --text-5xl-fontWeight: 500;
+
+  --text-4xl: 36px;
+  --text-4xl-lineHeight: 44px;
+  --text-4xl-letterSpacing: -1.2000000476837158px;
+  --text-4xl-fontWeight: 500;
+
+  --text-3xl: 28px;
+  --text-3xl-lineHeight: 34px;
+  --text-3xl-letterSpacing: -1.800000011920929px;
+  --text-3xl-fontWeight: 500;
+
+  --text-2xl: 24px;
+  --text-2xl-lineHeight: 32px;
+  --text-2xl-letterSpacing: -1px;
+  --text-2xl-fontWeight: 400;
+
+  --text-xl: 22px;
+  --text-xl-lineHeight: 30px;
+  --text-xl-letterSpacing: -1px;
+  --text-xl-fontWeight: 400;
+
+  --text-lg: 21px;
+  --text-lg-lineHeight: 30px;
+  --text-lg-letterSpacing: -0.800000011920929px;
+  --text-lg-fontWeight: 400;
+
+  --text-base: 17px;
+  --text-base-lineHeight: 25px;
+  --text-base-letterSpacing: -0.699999988079071px;
+  --text-base-fontWeight: 400;
+
+  --text-sm: 15px;
+  --text-sm-lineHeight: 23px;
+  --text-sm-letterSpacing: -0.6000000238418579px;
+  --text-sm-fontWeight: 400;
+
+  --text-caption1: 20px;
+  --text-caption1-lineHeight: 24px;
+  --text-caption1-letterSpacing: -0.6000000238418579px;
+  --text-caption1-fontWeight: 400;
+
+  --text-caption2: 18px;
+  --text-caption2-lineHeight: 20px;
+  --text-caption2-letterSpacing: -0.30000001192092896px;
+  --text-caption2-fontWeight: 400;
+
+  --text-caption3: 16px;
+  --text-caption3-lineHeight: 18px;
+  --text-caption3-letterSpacing: -0.5px;
+  --text-caption3-fontWeight: 400;
+
+  --text-caption4: 13px;
+  --text-caption4-lineHeight: 15px;
+  --text-caption4-letterSpacing: -0.20000000298023224px;
+  --text-caption4-fontWeight: 400; 
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+
+.animate,
+a,
+a:hover {
+  -o-transition: all 0.2s ease-in-out;
+  -webkit-transition: all 0.2s ease-in-out;
+  -moz-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
 }
 
-html,
-body {
-  max-width: 100vw;
-  overflow-x: hidden;
-}
 
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
 
-* {
-  box-sizing: border-box;
-  padding: 0;
-  margin: 0;
-}
-
-a {
-  color: inherit;
-  text-decoration: none;
-}
-
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
-  }
-}

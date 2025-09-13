@@ -8,7 +8,7 @@ interface PageHeaderProps {
 
 const Header = ({ title }: PageHeaderProps) => {
   return (
-    <div className="fixed bg-white rigth-4 left-full shadow-lg sticky top-0 z-50">
+    <div className="bg-white rigth-4 left-full shadow-lg sticky top-0 z-50">
       <div className=" ">
         <div className="container mx-auto px-4 py-4 flex justify-between items-center">
           <Typography variant="h5" component="h1" theme="gray">

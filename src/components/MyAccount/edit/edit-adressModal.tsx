@@ -3,21 +3,20 @@ import { Address } from "@/types/address";
 import { Input } from "@/ui/design/forms/input";
 import { FormsType } from "@/types/form";
 import { Button } from "@/ui/design/button/button";
+import { useAddressStore } from "@/store/addressStore";
 
 interface EditAddressModalProps {
   isOpen: boolean;
   form: FormsType;
   onClose: () => void;
-  onSave: (address: Address) => void;
-  initialData: Address;
 }
 
 export const EditAddressModal = ({
   isOpen,
   form,
   onClose,
-  initialData,
 }: EditAddressModalProps) => {
+  const {address} = useAddressStore()
   const { onSubmit, register, errors, isLoading, handleSubmit } = form;
 
   return (
@@ -27,7 +26,7 @@ export const EditAddressModal = ({
           label="Rue :"
           isLoading={isLoading}
           type="text"
-          placeholder={initialData.street || "Votre nom"}
+          placeholder={address?.street || "Votre nom"}
           register={register}
           errors={errors}
           errorMsg="tu dois renseigner ce champ"
@@ -37,7 +36,7 @@ export const EditAddressModal = ({
           label="Ville :"
           isLoading={isLoading}
           type="text"
-          placeholder={initialData.city || "Votre nom"}
+          placeholder={address?.city || "Votre nom"}
           register={register}
           errors={errors}
           errorMsg="tu dois renseigner ce champ"
@@ -47,7 +46,7 @@ export const EditAddressModal = ({
           label="Pays :"
           isLoading={isLoading}
           type="text"
-          placeholder={initialData.state || "Votre nom"}
+          placeholder={address?.state || "Votre nom"}
           register={register}
           errors={errors}
           errorMsg="tu dois renseigner ce champ"
@@ -57,7 +56,7 @@ export const EditAddressModal = ({
           label="Code Postal :"
           isLoading={isLoading}
           type="text"
-          placeholder={initialData.zipCode || "Votre nom"}
+          placeholder={address?.zipCode || "Votre nom"}
           register={register}
           errors={errors}
           errorMsg="tu dois renseigner ce champ"

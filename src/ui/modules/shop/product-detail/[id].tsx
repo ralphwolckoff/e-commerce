@@ -21,7 +21,7 @@ interface PageProps {
 
 const ProductModal = ({ isOpen , onClose, productId }: PageProps) => {
   const router = useRouter();
-  const { items, addItem } = useCartStore();
+  const {  addItem } = useCartStore();
   const {isAuthenticated, user} = useAuthStore()
 
   const [product, setProduct] = useState<Product | null>(null);
@@ -99,7 +99,7 @@ const ProductModal = ({ isOpen , onClose, productId }: PageProps) => {
             <div className="max-w-[526px] w-full">
               <div className="flex gap-5">
                 <div className="flex flex-col gap-5">
-                  {product.images?.map((img, key) => (
+                  {product.images && product.images.map((img, key) => (
                     <button
                       onClick={() => setActivePreview(key)}
                       key={key}
@@ -108,7 +108,7 @@ const ProductModal = ({ isOpen , onClose, productId }: PageProps) => {
                       }`}
                     >
                       <Image
-                        src={img?.url || ""}
+                        src={img.url}
                         alt="thumbnail"
                         width={61}
                         height={61}
@@ -142,15 +142,14 @@ const ProductModal = ({ isOpen , onClose, productId }: PageProps) => {
                       </svg>
                     </button>
 
-                    <Image
+                    {product.images && <Image
                       src={
-                        product?.images?.[activePreview].url ||
-                        "/placeholder.jpg"
+                        product.images[activePreview].url
                       }
                       alt="products-details"
                       width={400}
                       height={400}
-                    />
+                    />}
                   </div>
                 </div>
               </div>
@@ -273,8 +272,6 @@ const ProductModal = ({ isOpen , onClose, productId }: PageProps) => {
                       </defs>
                     </svg>
                   </div>
-
-                  
                 </div>
 
                 <div className="flex items-center gap-2">
@@ -317,7 +314,7 @@ const ProductModal = ({ isOpen , onClose, productId }: PageProps) => {
 
                   <span className="flex items-center gap-2">
                     <span className="font-semibold text-dark text-xl xl:text-heading-4">
-                      ${Number(product.price)}
+                      {Number(product.price)} €
                     </span>
                     <span className="font-medium text-dark-4 text-lg xl:text-2xl line-through">
                       {/* ${Number(product.price)} */}

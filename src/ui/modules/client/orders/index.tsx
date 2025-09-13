@@ -74,7 +74,7 @@ export const ClientOrderList = ({ orders }: ClientProps) => {
               </p>
               {/* Le prix unitaire est calculé à partir du priceAtOrder */}
               <p className="text-sm text-gray-600">
-                Prix : ${item.priceAtOrder.toFixed(2)}
+                Prix : {item.priceAtOrder.toFixed(2)} €
               </p>
             </div>
           </div>
@@ -83,7 +83,7 @@ export const ClientOrderList = ({ orders }: ClientProps) => {
 
       <div className="flex justify-between items-center space-x-4">
         <p className="text-lg font-bold text-gray-800">
-          Total : ${orders.totalAmount?.toFixed(2)}
+          Total : {orders.totalAmount?.toFixed(2)} €
         </p>
         <Button
           size="small"

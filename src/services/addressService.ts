@@ -17,6 +17,24 @@ export const addressService = {
     }
   },
 
+  async getAddressById(id: string){
+    try {
+      const response = await api.get(`/addresses/${id}`);
+      return response.data;
+      
+    } catch (error) {
+      const axiosError = error as AxiosError;
+      if (axiosError.response?.status === 404) {
+        return null; // Retourne null si l'adresse n'existe pas
+      }
+      console.error(
+        "Erreur lors de la récupération de l'adresse :",
+        axiosError.message
+      );
+      throw axiosError;
+    }
+  },
+
   
   async getAddress(): Promise<Address | null> {
     try {

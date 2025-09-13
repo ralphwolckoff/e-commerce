@@ -202,7 +202,7 @@ export default function ProductEditPage() {
       await productService.updateProduct(productId, payload);
 
       toast.success("Produit mis à jour avec succès !");
-      router.push("/seller/my-account");
+      router.push("/seller/product");
     } catch (error) {
       console.error("Échec de la mise à jour du produit:", error);
       toast.error("Échec de la mise à jour du produit.");

@@ -151,8 +151,8 @@ const OrderDetailModal = ({ isOpen, onClose, order }: OrderModalProps) => {
                   Quantité: {item.quantity}
                 </p>
                 <p className="text-sm text-gray-600">
-                  Prix unitaire: $
-                  {(item.priceAtOrder / item.quantity).toFixed(2)}
+                  Prix unitaire:
+                  {(item.priceAtOrder / item.quantity).toFixed(2)} €
                 </p>
               </div>
               <p className="font-bold text-lg">
@@ -162,7 +162,7 @@ const OrderDetailModal = ({ isOpen, onClose, order }: OrderModalProps) => {
           ))}
         </div>
         <p className="text-lg font-bold text-gray-800">
-          Total : ${totalOrderPrice?.toFixed(2)}
+          Total : {totalOrderPrice?.toFixed(2)} €
         </p>
       </div>
     </Modal>

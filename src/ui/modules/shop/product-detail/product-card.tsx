@@ -105,7 +105,7 @@ interface ProductCardProps {
    viewMode: string;
  }
 
-export const ProductCard = ({ product, viewMode }: ProductCardProps) => {
+export default function ProductCard ({ product, viewMode }: ProductCardProps){
   const { addItem } = useCartStore();
   const {isAuthenticated,  user} = useAuthStore()
 
@@ -132,17 +132,15 @@ export const ProductCard = ({ product, viewMode }: ProductCardProps) => {
          onMouseEnter={() => setIsHovered(true)}
          onMouseLeave={() => setIsHovered(false)}
        >
-         <div className="relative flex-shrink-0">
+         <div className="relative flex-shrink-0 ">
+           {product.images &&
            <Image
-             src={
-               product.images?.[0]?.url ||
-               "https://placehold.co/200x200/E2E8F0/1A202C?text=No+Image"
-             }
+             src={product.images[0].url}
              alt={product.name}
-             width={96}
-             height={96}
-             className="h-50 w-full object-contain rounded-lg"
-           />
+             width={250}
+             height={250}
+             className="h-50 w-70 object-contain rounded-lg"
+           />}
            <div
              className={`absolute left-0 bottom-0  w-full flex items-center justify-center gap-2.5 pb-5 ease-linear duration-200  ${
                isHovered
@@ -156,19 +154,28 @@ export const ProductCard = ({ product, viewMode }: ProductCardProps) => {
              >
                <EyeIcon className="w-5 h-5" />
              </button>
-             <Button action={() => handleAddToCart(product)} size="very-small">Add to cart</Button>
+             <Button action={() => handleAddToCart(product)} size="very-small">
+               Add to cart
+             </Button>
              <button className="p-2 bg-white rounded-full text-gray-800 hover:bg-gray-200 transition-colors">
                <HeartIcon className="w-5 h-5" />
              </button>
            </div>
          </div>
          <div className="flex-1">
-           <h3 className="text-lg font-semibold text-gray-800">
+           <Typography variant="h5" component="h3" className="font-semibold">
              {product.name}
-           </h3>
+           </Typography>
            <div className="flex items-center space-x-2 mb-4">
              <span className="text-xl font-bold text-gray-900">
-               ${Number(product.price)}
+               <Typography
+                 variant="body-lg"
+                 component="span"
+                 theme="secondary"
+                 className="font-bold"
+               >
+                 {Number(product.price)} €
+               </Typography>
              </span>
            </div>
          </div>
@@ -184,21 +191,24 @@ export const ProductCard = ({ product, viewMode }: ProductCardProps) => {
    return (
      <div className="group w-full max-w-sm rounded-lg overflow-hidden bg-white shadow-md p-4 flex flex-col items-center">
        <div className="relative overflow-hidden flex items-center justify-center rounded-lg  min-h-[270px] mb-4 w-full">
-         <img
-           src={product.images?.[0].url}
+         {product.images &&
+         <Image
+           src={product.images[0].url}
            alt={product.name}
            width={250}
            height={250}
-         />
+         />}
          <div className="absolute left-0 bottom-0 translate-y-full w-full flex items-center justify-center gap-2.5 pb-5 ease-linear duration-200 group-hover:translate-y-0">
-             <button
-               onClick={onOpenModal}
-               aria-label="button for quick view"
-               className="flex items-center justify-center w-9 h-9 rounded-full shadow-md transition-colors text-gray-800 bg-white hover:bg-gray-200"
-             >
-               <EyeIcon className="w-5 h-5" />
-             </button>
-           <Button action={() => handleAddToCart(product)} size="very-small">Add to cart</Button>
+           <button
+             onClick={onOpenModal}
+             aria-label="button for quick view"
+             className="flex items-center justify-center w-9 h-9 rounded-full shadow-md transition-colors text-gray-800 bg-white hover:bg-gray-200"
+           >
+             <EyeIcon className="w-5 h-5" />
+           </button>
+           <Button action={() => handleAddToCart(product)} size="very-small">
+             Add to cart
+           </Button>
            <button
              aria-label="button for favorite select"
              className="flex items-center justify-center w-9 h-9 rounded-full shadow-md transition-colors text-gray-800 bg-white hover:bg-gray-200"
@@ -218,11 +228,15 @@ export const ProductCard = ({ product, viewMode }: ProductCardProps) => {
              theme="secondary"
              className="font-bold"
            >
-             ${Number(product.price)}
-           </Typography>{" "}
+             {Number(product.price)} €
+           </Typography>
          </span>
        </div>
-       <ProductModal isOpen={showModal} onClose={() => setShowModal(false)} productId={product.id} />
+       <ProductModal
+         isOpen={showModal}
+         onClose={() => setShowModal(false)}
+         productId={product.id}
+       />
      </div>
    );
  };

@@ -5,6 +5,9 @@ import { Status } from "@/common/status.enum";
 import { Order } from "@/types/commands";
 import Image from "next/image";
 import { Button } from "@/ui/design/button/button";
+import { Typography } from "@/ui/design/typography/Typography";
+import { Address } from "@/types/address";
+import { addressService } from "@/services/addressService";
 
 interface StatusUpdateModalProps {
   isOpen: boolean;
@@ -20,12 +23,29 @@ export const StatusUpdateModal = ({
   onsave,
   order,
 }: StatusUpdateModalProps) => {
+  // const [address , setAddress] = useState<Address| null>(null)
   const [newStatus, setNewStatus] = useState<Status>(
     order?.status || "PENDING"
   );
 
+  
+
+  // const fetchAddress =async ()=>{
+  //   try {
+  //     if (order?.addressId) {
+  //       const addressId = order.userId
+  //       const address = await addressService.getAddressById(addressId)
+  //       console.log({address});
+  //       setAddress(address)
+  //     }
+  //   } catch (error) {
+  //     console.log("echec de recuperation de l'address");
+  //   }
+  // }
+
   useEffect(() => {
     if (order) {
+      // fetchAddress()
       setNewStatus(order.status);
       // setDeliveryDate(order.deliveryDate || "");
     }
@@ -69,6 +89,20 @@ export const StatusUpdateModal = ({
             </div>
           </div>
         ))}
+        <div className="flex flex-col gap-4">
+          <Typography variant="caption3" component="span">
+            <span className="font-semibold text-gray-800">
+              Address de livraison:{" "}
+            </span>
+            {order?.address?.street} - {order?.address?.city}
+          </Typography>
+          <Typography variant="caption3" component="span">
+            <span className="font-semibold text-gray-800">
+              Contact du client:{" "}
+            </span>
+            {order?.user?.profile?.phoneNumber}
+          </Typography>
+        </div>
       </div>
       <form onSubmit={handleSubmit} className="space-y-4">
         <div>
@@ -109,7 +143,7 @@ export const StatusUpdateModal = ({
         </div> */}
         <div className="flex justify-end space-x-2">
           <Button
-          size="small"
+            size="small"
             type="button"
             variant="outline"
             action={onClose}
@@ -118,7 +152,7 @@ export const StatusUpdateModal = ({
             Annuler
           </Button>
           <Button
-          size="small"
+            size="small"
             type="submit"
             className="px-4 py-2 text-sm font-medium text-white bg-indigo-600 rounded-md shadow-sm hover:bg-indigo-700 transition-colors"
           >

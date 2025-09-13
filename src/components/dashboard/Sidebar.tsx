@@ -48,7 +48,6 @@ export default function Sidebar() {
   const handleLogout = async () => {
     try {
       useAuthStore.getState().logout();
-      logout();
       toast.success("Déconnexion réussie !");
       router.back();
     } catch (error) {

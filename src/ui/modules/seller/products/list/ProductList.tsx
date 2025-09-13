@@ -203,7 +203,7 @@ export default function ProductList() {
                     </div>
                   </td>
                   <td className="py-2 px-4">{product.name}</td>
-                  <td className="py-2 px-4">${Number(product.price)}</td>
+                  <td className="py-2 px-4">{Number(product.price)} €</td>
                   <td className="py-2 px-4">{product.stock}</td>
                   <td className="py-2 px-4">
                     <div className="flex items-center space-x-2">

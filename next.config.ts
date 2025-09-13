@@ -4,9 +4,6 @@ const nextConfig: NextConfig = {
   /* config options here */
   reactStrictMode: true,
 
-  // swcMinify: true,
-  // output: "export",
-
   images: {
     remotePatterns: [
       {

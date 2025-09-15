@@ -28,6 +28,7 @@ const ProductModal = ({ isOpen , onClose, productId }: PageProps) => {
   const [loading, setLoading] = useState(true);
   const [quantity, setQuantity] = useState(1);
   const [activePreview, setActivePreview] = useState(0);
+  const [isZoomed, setIsZoomed] = useState(false);
 
   useEffect(() => {
     const fetchProduct = async () => {
@@ -83,6 +84,89 @@ const ProductModal = ({ isOpen , onClose, productId }: PageProps) => {
   const handleAddToCart = () => handleProcessOrder(false);
   const handleBuyNow = () => handleProcessOrder(true);
 
+  const handleZoomImage = () => {
+    setIsZoomed(true);
+  };
+
+   const handlePrevImage = () => {
+     setActivePreview((prev) =>
+       prev === 0
+         ? (product?.images?.length ? product.images.length - 1 : 0)
+         : prev - 1
+     );
+   };
+
+   // Fonction pour l'image suivante
+   const handleNextImage = () => {
+     setActivePreview((prev) =>
+       prev === (product?.images?.length ? product.images.length - 1 : 0)
+         ? 0
+         : prev + 1
+     );
+   };
+
+  if (isZoomed && product?.images?.[activePreview]?.url) {
+
+    return (
+      <div className="fixed inset-0 z-[100] bg-black bg-opacity-90 flex items-center justify-center p-4">
+        <button
+          onClick={() => setIsZoomed(false)}
+          className="absolute top-4 right-4 text-white text-3xl font-bold p-2"
+        >
+          &times;
+        </button>
+        <div className="relative w-full h-full max-w-[90vw] max-h-[90vh]">
+          <Image
+            fill
+            src={product.images[activePreview].url}
+            alt="Full-screen product image"
+            className="object-contain w-full h-full"
+          />
+
+          <button
+            onClick={handlePrevImage}
+            className="absolute left-4 top-1/2 -translate-y-1/2 text-white bg-black bg-opacity-50 rounded-full p-2 hover:bg-opacity-75 transition-colors"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="h-6 w-6"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M15 19l-7-7 7-7"
+              />
+            </svg>
+          </button>
+
+          <button
+            onClick={handleNextImage}
+            className="absolute right-4 top-1/2 -translate-y-1/2 text-white bg-black bg-opacity-50 rounded-full p-2 hover:bg-opacity-75 transition-colors"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="h-6 w-6"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M9 5l7 7-7 7"
+              />
+            </svg>
+          </button>
+        </div>
+      </div>
+    );
+}
+
   if (loading) {
     return <div className="text-center py-12">Chargement du produit...</div>;
   }
@@ -99,29 +183,30 @@ const ProductModal = ({ isOpen , onClose, productId }: PageProps) => {
             <div className="max-w-[526px] w-full">
               <div className="flex gap-5">
                 <div className="flex flex-col gap-5">
-                  {product.images && product.images.map((img, key) => (
-                    <button
-                      onClick={() => setActivePreview(key)}
-                      key={key}
-                      className={`flex items-center justify-center w-20 h-20 overflow-hidden rounded-lg bg-gray-1 ease-out duration-200 hover:border-2 hover:border-blue-500 ${
-                        activePreview === key && "border-2 border-blue-600"
-                      }`}
-                    >
-                      <Image
-                        src={img.url}
-                        alt="thumbnail"
-                        width={61}
-                        height={61}
-                        className="aspect-square"
-                      />
-                    </button>
-                  ))}
+                  {product.images &&
+                    product.images.map((img, key) => (
+                      <button
+                        onClick={() => setActivePreview(key)}
+                        key={key}
+                        className={`flex items-center justify-center w-20 h-20 overflow-hidden rounded-lg bg-gray-1 ease-out duration-200 hover:border-2 hover:border-blue-500 ${
+                          activePreview === key && "border-2 border-blue-600"
+                        }`}
+                      >
+                        <Image
+                          src={img.url}
+                          alt="thumbnail"
+                          width={61}
+                          height={61}
+                          className="aspect-square"
+                        />
+                      </button>
+                    ))}
                 </div>
 
                 <div className="relative z-1 overflow-hidden flex items-center justify-center w-full sm:min-h-[400px] bg-gray-1 rounded-lg border border-gray-3">
                   <div>
                     <button
-                      // onClick={navigateImage}
+                      onClick={handleZoomImage}
                       aria-label="button for zoom"
                       className="gallery__Image w-10 h-10 rounded-[5px] bg-white shadow-1 flex items-center justify-center ease-out duration-200 text-dark hover:text-blue absolute top-4 lg:top-8 right-4 lg:right-8 z-50"
                     >
@@ -142,14 +227,14 @@ const ProductModal = ({ isOpen , onClose, productId }: PageProps) => {
                       </svg>
                     </button>
 
-                    {product.images && <Image
-                      src={
-                        product.images[activePreview].url
-                      }
-                      alt="products-details"
-                      width={400}
-                      height={400}
-                    />}
+                    {product.images && (
+                      <Image
+                        src={product.images[activePreview].url}
+                        alt="products-details"
+                        width={400}
+                        height={400}
+                      />
+                    )}
                   </div>
                 </div>
               </div>

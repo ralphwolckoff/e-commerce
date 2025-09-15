@@ -139,7 +139,7 @@ export default function CartPage() {
             </div>
           </div>
         ))}
-      </div>
+      </div> 
 
       {/* Order Summary Section */}
       <div className="flex flex-col md:flex-row justify-between gap-8 mt-8">
@@ -159,7 +159,7 @@ export default function CartPage() {
                   {totalItems} article
                 </span>
               ) : (
-                <span> {totalItems} articles</span>
+                <span> {items.length} articles</span>
               )}
             </div>
             {/* You can add shipping, tax here */}

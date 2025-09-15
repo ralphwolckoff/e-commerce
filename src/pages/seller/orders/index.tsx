@@ -11,9 +11,8 @@ import { useOrdersStore } from "@/store/orderStore";
 
 export default function OrderManagementPage() {
   const [orders, setOrders] = useState<Order[]>([]);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const { store } = useStoreStore();
-  // const {orders} = useOrdersStore()
   console.log({orders});
   
   useEffect(() => {
@@ -38,11 +37,21 @@ export default function OrderManagementPage() {
     fetchVendorOrders();
   }, []);
 
-  
+  const groupedOrders: Record<string, typeof orders> = orders.reduce(
+    (groups, order) => {
+      const storeName = order.user.profile?.firstName || "Client inconnue";
+      if (!groups[storeName]) {
+        groups[storeName] = [];
+      }
+      groups[storeName].push(order);
+      return groups;
+    },
+    {} as Record<string, typeof orders>
+  );
 
-  // if (loading) {
-  //   return <div className="text-center py-10">Chargement des commandes...</div>;
-  // }
+  if (loading) {
+    return <div className="text-center py-10">Chargement des commandes...</div>;
+  }
 
   if (orders.length===0) {
     return (
@@ -53,13 +62,26 @@ export default function OrderManagementPage() {
   }
 
   return (
-    <div className="container mx-auto px-4 py-8">
-      <h1 className="text-3xl font-bold mb-6">Gestion des commandes</h1>
-      <div className="space-y-6">
-        {orders.map((order)=>
-          <SellerOrderCard
-            order={order}
-          />)}
+    <div className="p-8">
+      <div className="max-w-4xl mx-auto">
+        <h1 className="text-3xl font-bold mb-8">Gestion des commandes</h1>
+        {Object.keys(groupedOrders).map((storeName) => {
+          const sortedOrders = groupedOrders[storeName].sort(
+            (a, b) =>
+              new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+          );
+
+          return (
+            <div key={storeName} className="mb-8">
+              <h2 className="text-center text-2xl font-semibold mb-4 text-gray-700">
+                {storeName}
+              </h2>
+              {sortedOrders.map((order) => (
+                <SellerOrderCard key={order.id} order={order} />
+              ))}
+            </div>
+          );
+        })}
       </div>
     </div>
   );

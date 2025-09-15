@@ -20,8 +20,6 @@ export default function UserInfoModalContent() {
     try {
       useAuthStore.getState().logout
       logout();
-
-      toast.success("Déconnexion réussie !");
       router.push("/");
     } catch (error) {
       toast.error("Erreur lors de la déconnexion:");

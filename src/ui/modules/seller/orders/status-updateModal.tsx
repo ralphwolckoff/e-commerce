@@ -92,9 +92,13 @@ export const StatusUpdateModal = ({
         <div className="flex flex-col gap-4">
           <Typography variant="caption3" component="span">
             <span className="font-semibold text-gray-800">
-              Address de livraison:{" "}
+              Address de livraison:
             </span>
-            {order?.address?.street} - {order?.address?.city}
+            {order?.address
+              ? `${order.address.street} - ${order.address.city}`
+              : order?.shippingAddress
+                ? order.shippingAddress
+                : "Adresse non disponible"}
           </Typography>
           <Typography variant="caption3" component="span">
             <span className="font-semibold text-gray-800">
@@ -125,22 +129,6 @@ export const StatusUpdateModal = ({
             <option value="CANCELED">Annulée</option>
           </select>
         </div>
-        {/* <div>
-          <label
-            htmlFor="deliveryDate"
-            className="block text-sm font-medium text-gray-700"
-          >
-            Delivery Date
-          </label>
-          <input
-            type="date"
-            id="deliveryDate"
-            name="deliveryDate"
-            value={deliveryDate}
-            onChange={(e) => setDeliveryDate(e.target.value)}
-            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
-          />
-        </div> */}
         <div className="flex justify-end space-x-2">
           <Button
             size="small"

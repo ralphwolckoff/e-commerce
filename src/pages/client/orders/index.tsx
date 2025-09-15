@@ -13,8 +13,6 @@ export default function OrderManagementPage() {
   const [orders, setOrders] = useState<Order[]>([]);
   const [loading, setLoading] = useState(true);
   const {authUser} = useAuth()
-  // const {orders} = useOrdersStore()
-  console.log({ orders });
 
   useEffect(() => {
     const fetchVendorOrders = async () => {
@@ -36,6 +34,18 @@ export default function OrderManagementPage() {
     fetchVendorOrders();
   }, []);
 
+   const groupedOrders: Record<string, typeof orders> = orders.reduce(
+     (groups, order) => {
+       const storeName = order.store.name || "Boutique inconnue";
+       if (!groups[storeName]) {
+         groups[storeName] = [];
+       }
+       groups[storeName].push(order);
+       return groups;
+     },
+     {} as Record<string, typeof orders>
+   );
+
   if (orders.length === 0) {
     return (
       <div className="text-center py-10">
@@ -44,13 +54,30 @@ export default function OrderManagementPage() {
     );
   }
 
+
+
   return (
-    <div className="container mx-auto px-4 py-8">
-      <h1 className="text-3xl font-bold mb-6">Gestion des commandes</h1>
-      <div className="space-y-6">
-        {orders.map((order) => (
-          <ClientOrderList orders={order} />
-        ))}
+    <div className="p-8">
+      <div className="max-w-4xl mx-auto">
+        <h1 className="text-3xl font-bold mb-8">Mes Commandes</h1>
+        {Object.keys(groupedOrders).map((storeName) => {
+          // Sort orders for the current store by date descending
+          const sortedOrders = groupedOrders[storeName].sort(
+            (a, b) =>
+              new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+          );
+
+          return (
+            <div key={storeName} className="mb-8">
+              <h2 className="text-center text-2xl font-semibold mb-4 text-gray-700">
+                {storeName}
+              </h2>
+              {sortedOrders.map((order) => (
+                <ClientOrderList key={order.id} orders={order} />
+              ))}
+            </div>
+          );
+        })}
       </div>
     </div>
   );

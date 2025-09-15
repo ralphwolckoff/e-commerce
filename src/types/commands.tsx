@@ -23,10 +23,11 @@ export interface OrderItemPayload
   quantity: number
 }
 
-export interface OrderPayload{
-  userId: string
-  addressId: string
-  items: OrderItemPayload[]
+export interface OrderPayload {
+  userId: string;
+  addressId?: string;
+  shippingAddress?:string
+  items: OrderItemPayload[];
 }
 
 export interface Order {
@@ -39,6 +40,7 @@ export interface Order {
   userId: string;
   storeId: string;
   addressId: string;
+  shippingAddress: string
   user: User;
   address: Address;
   store: Store

@@ -132,34 +132,6 @@ export default function SellerOrderCard({
         >
           Détails de la commande
         </Button>
-        {/* <div className="flex space-x-2">
-          {order.status === "PENDING" && (
-            <Button
-              size="small"
-              action={() => onUpdateStatus(order.id, "SHIPPED")}
-              className="bg-blue-600 text-white px-5 py-2 rounded-md font-semibold hover:bg-blue-700 transition duration-300"
-            >
-              Marquer comme expédié
-            </Button>
-          )}
-          {order.status === "SHIPPED" && (
-            <Button
-              size="small"
-              action={() => onUpdateStatus(order.id, "DELIVERED")}
-              className=" rounded-md font-semibold  transition duration-300"
-            >
-              Marquer comme livré
-            </Button>
-          )}
-          <Button
-            size="small"
-            variant="secondary"
-            className="font-semibold"
-            action={() => onUpdateStatus(order.id, "CANCELED")}
-          >
-            Annuler la commande
-          </Button>
-        </div> */}
       </div>
       <StatusUpdateModal
         isOpen={showModal}

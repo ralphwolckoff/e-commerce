@@ -26,25 +26,29 @@ export interface OrderItemPayload
 export interface OrderPayload {
   userId: string;
   addressId?: string;
-  shippingAddress?:string
+  shippingAddress?: string;
+  paymentMethod: string;
+  mobileMoneyNumber: number;
   items: OrderItemPayload[];
 }
 
 export interface Order {
   id: string;
-  orderNumber: string
-  status: Status
+  orderNumber: string;
+  status: Status;
   totalAmount: number;
   createdAt: Date;
   updatedAt: Date;
   userId: string;
   storeId: string;
   addressId: string;
-  shippingAddress: string
+  shippingAddress: string;
+  paymentMethod: string;
+  mobileMoneyNumber:number
   user: User;
   address: Address;
-  store: Store
-  category:Categorie
-  items: OrderItem[]
-  product: Product
+  store: Store;
+  category: Categorie;
+  items: OrderItem[];
+  product: Product;
 }

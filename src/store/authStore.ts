@@ -8,6 +8,8 @@ interface AuthState {
   profile: Profile | null;
   token: string | null;
   error: string | null;
+  refreshToken:string |null
+  setToken: (refreshToken: string| null) =>void
   setUserProfile: (profile: Profile | null) => void;
   setAuth: (
     isAuthenticated: boolean,
@@ -24,7 +26,11 @@ export const useAuthStore = create<AuthState>()(
       profile: null,
       user: null,
       token: null,
+      refreshToken: null,
       error: null,
+      setToken : (refreshToken) => set ({
+        refreshToken
+      }),
       setUserProfile: (profile) => set({ profile }),
       setAuth: (isAuthenticated, token, user) =>
         set({ isAuthenticated, token, user }), 
@@ -33,7 +39,7 @@ export const useAuthStore = create<AuthState>()(
           isAuthenticated: false,
           user: null,
           token: null,
-        }); // Vider aussi le refreshToken
+        });
       },
     }),
     {

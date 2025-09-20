@@ -10,6 +10,7 @@ export const CategoryIndex = () => {
   const [isLoading, setIsLoading] = useState(false);
   const { authUser } = useAuth();
   const {store} = useStoreStore()
+  console.log({categories});
 
   const fetchCategories = async () => {
     setIsLoading(true);
@@ -79,7 +80,7 @@ export const CategoryIndex = () => {
 
 
   if (isLoading) {
-    
+      return <div className="text-center py-10">Chargement de vos catégories...</div>;
   }
 
   return (

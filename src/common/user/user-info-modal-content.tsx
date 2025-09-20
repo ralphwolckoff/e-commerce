@@ -11,15 +11,12 @@ import { LogoutIcon2 } from "@/components/icons";
 
 export default function UserInfoModalContent() {
   const { user, profile } = useAuthStore();
-  const { logout} = useAuth()
+  const { logout } = useAuth();
   const router = useRouter();
 
- 
-
   const handleLogout = async () => {
-    try {
-      useAuthStore.getState().logout
-      logout();
+    try {      
+      logout()
       router.push("/");
     } catch (error) {
       toast.error("Erreur lors de la déconnexion:");
@@ -27,8 +24,8 @@ export default function UserInfoModalContent() {
   };
 
   return (
-    <div className="bg-white">
-      <div className="flex items-center justify-center space-x-4 mb-6">
+    <div className="bg-white p-6">
+      <div className="flex items-center justify-center  space-x-4 mb-6">
         <div className="relative w-24 h-24 rounded-full  overflow-hidden border-2 border-gray-200">
           <Image
             src={profile?.photoUrl || "/images/profile-placeholder.jpg"}
@@ -88,11 +85,7 @@ export default function UserInfoModalContent() {
 
         <Button
           size="small"
-          baseUrl={
-            user?.role === Role.CLIENT
-              ? "/client/my-account"
-              : "/seller/my-account"
-          }
+          baseUrl={user?.role === Role.CLIENT ? "/my-account" : "/mon-espace"}
           className="bg-green-700 text-white px-8 py-2 rounded-md font-semibold hover:bg-green-800 transition duration-300 shadow-md"
         >
           Mon Espace

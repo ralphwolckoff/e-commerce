@@ -1,6 +1,6 @@
 import { Button } from "@/ui/design/button/button";
 import { Typography } from "@/ui/design/typography/Typography";
-import {  RiGroupFill, RiShieldCheckFill, RiStarFill, RiStarLine } from "react-icons/ri";
+import {  RiGroupFill, RiShieldCheckFill, RiStarFill } from "react-icons/ri";
 
 export function WhyChooseUsSection() {
   const features = [

@@ -115,7 +115,6 @@ export default function ProductCreationForm() {
       });
 
       const uploadedUrls = await Promise.all(uploadPromises);
-      console.log({ uploadedUrls });
 
       setFormData((prev) => {
         const newImages = [
@@ -129,7 +128,6 @@ export default function ProductCreationForm() {
         return { ...prev, images: newImages };
       });
 
-      toast.success("Images uploadées avec succès !");
     } catch (error) {
       console.error("Erreur lors de l'upload des images:", error);
       toast.error("Échec de l'upload des images.");
@@ -196,8 +194,7 @@ export default function ProductCreationForm() {
 
       const newProduct = await productService.createProduct(payload);
       useProductStore.getState().addProduct(newProduct);
-      toast.success("Produit créé avec succès !");
-      router.push("/seller/product");
+      router.push("/mon-espace/product");
     } catch (error) {
       const axiosError = error as AxiosError;
       if (axiosError.response) {

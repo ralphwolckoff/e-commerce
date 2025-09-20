@@ -11,6 +11,7 @@ interface Props {
   errorMsg?: string;
   id: string;
   required?: boolean;
+  defaultValue?:string
   isAutoCompleted?: boolean;
   label?: string
 }
@@ -19,6 +20,7 @@ export const Input = ({
   isLoading,
   placeholder,
   className,
+  defaultValue,
   type = "text",
   register,
   errors,
@@ -38,6 +40,7 @@ export const Input = ({
       <input
         type={type}
         placeholder={placeholder}
+        defaultValue={defaultValue}
         className={clsx(
           isLoading && "cursor-not-allowed",
           errors[id]

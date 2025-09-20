@@ -13,6 +13,7 @@ export const productService = {
   }): Promise<Product[]> => {
     const config: AxiosRequestConfig = { params };
     const response = await api.get("/products", config);
+    useProductStore.getState().setProduct(response.data)
     return response.data;
   },
 

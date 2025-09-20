@@ -19,9 +19,10 @@ import { useCategoryStore } from "@/store/categoryStore";
 export default function ProductList() {
   const [allProducts, setAllProducts] = useState<Product[]>([]);
   const [displayedProducts, setDisplayedProducts] = useState<Product[]>([]);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const [categories, setCategories] = useState<Category[]>([]);
   const [selectedCategory, setSelectedCategory] = useState<string>("");
+
 
   const { authUser, authUserIsLoading } = useAuth();
   const { store } = useStoreStore();
@@ -109,29 +110,27 @@ export default function ProductList() {
     filterAndSortProducts();
   }, [allProducts, searchTerm, sortBy, sortOrder, selectedCategory]);
 
-  console.log({allProducts});
   const handleSortOrderChange = () => {
     setSortOrder(sortOrder === "asc" ? "desc" : "asc");
   };
 
   const handleEdit = (productId: string) => {
-    router.push(`/seller/product/edit/${productId}`);
+    router.push(`/mon-espace/product/${productId}`);
     console.log(`Editing product with ID: ${productId}`);
   };
 
   const handleDelete = async (productId: string) => {
     if (window.confirm("Are you sure you want to delete this product?")) {
       await productService.deleteProduct(productId);
-      console.log(`Deleting product with ID: ${productId}`);
       const updatedList = allProducts.filter((p) => p.id !== productId);
       setAllProducts(updatedList);
       toast.success("Product deleted successfully!");
     }
   };
 
-  // if (loading || loadingProducts) {
-  //   return <div className="text-center py-10">Loading products...</div>;
-  // }
+  if (loading ) {
+    return <div className="text-center py-10">Loading products...</div>;
+  }
 
   return (
     <div className="container mx-auto px-4 py-8">

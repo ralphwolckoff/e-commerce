@@ -2,7 +2,7 @@ import React from "react";
 import { Order } from "@/types/commands";
 import Image from "next/image";
 import { format } from "date-fns";
-import { Modal } from "../../../../components/MyAccount/modal";
+import { Modal } from "../../seller/orders/modal";
 
 interface OrderModalProps {
   isOpen: boolean;
@@ -18,7 +18,6 @@ const OrderDetailModal = ({ isOpen, onClose, order }: OrderModalProps) => {
 
   const formatDate = (dateString: string | undefined) => {
     if (!dateString) return "N/A";
-    // `new Date` peut recevoir une chaîne ISO
     return format(new Date(dateString), "dd MMMM yyyy HH:mm");
   };
 
@@ -27,11 +26,8 @@ const OrderDetailModal = ({ isOpen, onClose, order }: OrderModalProps) => {
     0
   );
 
-  const phone = order.store.user?.profile?.firstName;
-  console.log({ phone });
-
   return (
-    <Modal isOpen={isOpen} onClose={onClose} title="">
+    <Modal isOpen={isOpen} onClose={onClose}>
       <div className="bg-white p-8 ">
         <div className="flex justify-between items-center mb-6 border-b pb-4">
           <div className="max-w-[350px]">
@@ -39,7 +35,7 @@ const OrderDetailModal = ({ isOpen, onClose, order }: OrderModalProps) => {
               Commande: {order.id}
             </h2>
             <p className="text-gray-500">
-              Date de la commande: {formatDate(String(order.createdAt))}
+              Fait le : {formatDate(String(order.createdAt))}
             </p>
           </div>
           <span
@@ -62,11 +58,19 @@ const OrderDetailModal = ({ isOpen, onClose, order }: OrderModalProps) => {
         <div className="flex justify-between items-center relative py-6">
           <div
             className={`flex flex-col items-center z-10 ${
-              !isPending ? "text-green-500" : "text-gray-400"
+              isPending || isShipped || isDelivered
+                ? "text-green-500"
+                : "text-gray-400"
             }`}
           >
             <div className="w-20 h-20 rounded-full flex justify-center  bg-white -z-1">
-              <div className="w-10 h-10 rounded-full flex items-center justify-center border-2 border-green-500 bg-white">
+              <div
+                className={`w-10 h-10 rounded-full flex items-center justify-center border-2 bg-white ${
+                  isPending || isShipped || isDelivered
+                    ? "border-green-500"
+                    : "border-gray-500"
+                }`}
+              >
                 ✔
               </div>
             </div>
@@ -81,8 +85,8 @@ const OrderDetailModal = ({ isOpen, onClose, order }: OrderModalProps) => {
               isShipped || isDelivered
                 ? "text-green-500"
                 : isCanceled
-                ? "border-red-500"
-                : "border-gray-400"
+                ? "text-red-500"
+                : "text-gray-400"
             }`}
           >
             <div className="w-20 h-20 rounded-full flex justify-center  bg-white -z-1">
@@ -111,8 +115,8 @@ const OrderDetailModal = ({ isOpen, onClose, order }: OrderModalProps) => {
               isDelivered
                 ? "text-green-500"
                 : isCanceled
-                ? "border-red-500"
-                : "border-gray-400"
+                ? "text-red-500"
+                : "text-gray-400"
             }`}
           >
             <div className="w-20 h-20 rounded-full flex justify-center  bg-white -z-1">

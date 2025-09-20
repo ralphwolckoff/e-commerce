@@ -152,7 +152,7 @@ export default function ClientDashboardPage() {
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         <Link
-          href="/client/my-account/commands"
+          href="/my-account/commands"
           className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow"
         >
           <h2 className="text-xl font-semibold text-green-700">

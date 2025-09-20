@@ -1,5 +1,6 @@
-import { ChevronLeftIcon, ChevronRightIcon } from "@/components/icons";
+"use client";
 
+import React from "react";
 interface PaginationProps {
    currentPage: number;
    totalPages: number;
@@ -20,7 +21,7 @@ export const Pagination = ({
          <button
            key={page}
            onClick={() => onPageChange(page)}
-           className={`px-4 py-2 rounded-lg font-medium transition-colors ${
+           className={`px-4 py-2 border-1 rounded-lg font-medium transition-colors ${
              currentPage === page
                ? "bg-primary text-white"
                : "text-gray-600 hover:bg-gray-200"
@@ -40,7 +41,7 @@ export const Pagination = ({
          <button
            key={1}
            onClick={() => onPageChange(1)}
-           className="px-4 py-2 rounded-lg font-medium text-gray-600 hover:bg-gray-200"
+           className="px-4 py-2 border rounded-md font-medium text-gray-600 hover:bg-gray-200"
          >
            1
          </button>
@@ -59,7 +60,7 @@ export const Pagination = ({
          <button
            key={i}
            onClick={() => onPageChange(i)}
-           className={`px-4 py-2 rounded-lg font-medium transition-colors ${
+           className={`px-4 py-2 border rounded-md font-medium transition-colors ${
              currentPage === i
                ? "bg-primary text-white"
                : "text-gray-600 hover:bg-gray-200"
@@ -82,34 +83,32 @@ export const Pagination = ({
          <button
            key={totalPages}
            onClick={() => onPageChange(totalPages)}
-           className="px-4 py-2 rounded-lg font-medium text-gray-600 hover:bg-gray-200"
+           className="px-4 py-2 rounded-lg border font-medium text-gray-600 hover:bg-gray-200"
          >
            {totalPages}
          </button>
        );
      }
      return renderedPages;
-   };
+   }; 
 
    return (
-     <div className="flex justify-center mt-8">
-       <div className="flex items-center space-x-2 bg-white rounded-lg shadow-md p-2">
-         <button
-           onClick={() => onPageChange(currentPage - 1)}
-           disabled={currentPage === 1}
-           className="p-2 rounded-lg disabled:opacity-50 disabled:cursor-not-allowed"
-         >
-           <ChevronLeftIcon className="w-5 h-5 text-gray-600" />
-         </button>
-         {renderPageNumbers()}
-         <button
-           onClick={() => onPageChange(currentPage + 1)}
-           disabled={currentPage === totalPages}
-           className="p-2 rounded-lg disabled:opacity-50 disabled:cursor-not-allowed"
-         >
-           <ChevronRightIcon className="w-5 h-5 text-gray-600" />
-         </button>
-       </div>
+     <div className="flex justify-center items-center space-x-2 mt-8">
+       <button
+         onClick={() => onPageChange(currentPage - 1)}
+         disabled={currentPage === 1}
+         className="px-4 py-2 border rounded-md text-gray-700 disabled:opacity-50"
+       >
+         Précédent
+       </button>
+       {renderPageNumbers()}
+       <button
+         onClick={() => onPageChange(currentPage + 1)}
+         disabled={currentPage === totalPages}
+         className="px-4 py-2 border rounded-md text-gray-700 disabled:opacity-50"
+       >
+         Suivant
+       </button>
      </div>
    );
  };

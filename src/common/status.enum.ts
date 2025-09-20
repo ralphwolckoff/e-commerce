@@ -6,6 +6,14 @@ export enum Statut {
   DELIVERED = "Delivered",
 }
 
+export enum Statuts {
+  En_Attente = "PENDING",
+  Traitement = "PROCESSING",
+  Expediée = "SHIPPED",
+  Livrée = "DELIVERED",
+  Annulée = "CANCELED",
+}
+
 export type Status =
   | "PENDING"
   | "PROCESSING"

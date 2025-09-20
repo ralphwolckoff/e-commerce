@@ -160,7 +160,7 @@ export const Button = ({
         icoSize,
         isLoading && "cursor-not-allowed",
         fullWith && "w-full",
-        "relative animate rounded",
+        "relative animate rounded hover:cursor-pointer",
         className
       )}
       onClick={handleClick}

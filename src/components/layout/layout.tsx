@@ -1,7 +1,7 @@
 import { Container } from "../container/container";
 import Footer from "../navigation/footer";
 import { Breadcrumbs } from "../breadcrumbs/breadcrumbs";
-import Sidebar from "../dashboard/Sidebar";
+import Sidebar from "../sidebar/Sidebar";
 import { Header } from "../navigation/header";
 import { Session } from "../session/session";
 

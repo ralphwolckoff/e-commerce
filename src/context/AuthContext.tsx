@@ -7,7 +7,7 @@ import {
   useState,
   ReactNode,
 } from "react";
-import { User} from "@/types/user";
+import { User } from "@/types/user";
 import { AuthService } from "@/services/authService";
 import { LoginFormType } from "@/types/form";
 import { useAuthStore } from "@/store/authStore";
@@ -25,17 +25,44 @@ const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export function AuthProvider({ children }: { children: ReactNode }) {
   const [authUserIsLoading, setAuthUserIsLoading] = useState<boolean>(true);
-  const {
-    user: authUser,
-    token,
-    logout: storeLogout,
-  } = useAuthStore();
+  const [authUser, setAuthUser] = useState<User | null>(null);
+  const { user, token, logout: storeLogout } = useAuthStore();
+  const { setAddress } = useAddressStore.getState();
 
+  const checkUserStatus = async () => {
+    if (user && token) {
+      try {
+        const response = await AuthService.getUserProfile(user.id);
+        const profile = response.profile;
+        const users = {
+          id: response.id,
+          email: response.email,
+          onboardingIsCompleted: response.onboardingIsCompleted,
+          role: response.role,
+          createdAt: response.createdAt,
+          updatedAt: response.updatedAt,
+        };
+        setAuthUser(users);
+        useAuthStore.getState().setUserProfile(profile);
+        const adress = await addressService.getAddress();
+        setAddress(adress);
+        console.log("Utilisateur restauré depuis le store persistant.", users);
+      } catch (error) {
+        console.error("Token expiré ou invalide, déconnexion...");
+        storeLogout();
+        setAuthUser(null);
+      }
+    } else {
+      setAuthUser(null);
+    }
+    setAuthUserIsLoading(false);
+  };
 
   const login = async (credentials: LoginFormType) => {
     try {
-      await AuthService.login(credentials);
-      
+      const {access_token, user }= await AuthService.login(credentials);
+      useAuthStore.getState().setAuth(true, access_token, user)
+      await checkUserStatus();
     } catch (error) {
       throw error;
     }
@@ -44,31 +71,13 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const logout = () => {
     AuthService.logout();
     storeLogout();
+    setAuthUser(null);
+    setAuthUserIsLoading(false);
   };
 
   useEffect(() => {
-    const checkUserStatus = async () => {
-      if (authUser && token) {
-        try {
-          const user = await AuthService.getUserProfile(authUser.id);
-          useAuthStore.getState().setUserProfile(user)
-          const adress = await addressService.getAddress()
-          useAddressStore.getState().setAddress(adress)
-          console.log("Utilisateur restauré depuis le store persistant.");
-
-        } catch (error) {
-          console.error("Token expiré ou invalide, déconnexion...");
-          storeLogout();
-        }
-      }else{
-        setAuthUserIsLoading(false);
-        return;
-      }
-      setAuthUserIsLoading(false);
-    };
-
     checkUserStatus();
-  }, [authUser, token, storeLogout]);
+  }, [token]);
 
   const value = {
     authUser,

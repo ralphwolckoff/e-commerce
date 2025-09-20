@@ -15,7 +15,8 @@ export const ProfileStepForm = ({ form }: Props) => {
       <Input
         label="Nom de la boutique"
         isLoading={isLoading}
-        placeholder={store?.name || "john Doe"}
+        placeholder="john Doe"
+        defaultValue={store?.name}
         type="text"
         register={register}
         errors={errors}
@@ -26,7 +27,8 @@ export const ProfileStepForm = ({ form }: Props) => {
       <Input
         label="Adresse de Localisation"
         isLoading={isLoading}
-        placeholder={store?.address || "123 Rue de Akwa-Douala"}
+        placeholder="123 Rue de Akwa-Douala"
+        defaultValue={store?.address}
         type="text"
         register={register}
         errors={errors}
@@ -37,7 +39,8 @@ export const ProfileStepForm = ({ form }: Props) => {
       <Textarea
         label="Description"
         isLoading={isLoading}
-        placeholder={store?.description || "Indique une courte description de toi..."}
+        placeholder="Indique une courte description de toi..."
+        defaultValue={store?.description}
         row={5}
         register={register}
         errors={errors}

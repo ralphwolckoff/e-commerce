@@ -8,6 +8,7 @@ import { toast } from "react-toastify";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { useToggle } from "@/hooks/use-toggle";
 import { useImageStore } from "@/store/imageStore";
+import { Typography } from "@/ui/design/typography/Typography";
 
 
 export const PersonalInformationSection = () => {
@@ -15,6 +16,7 @@ export const PersonalInformationSection = () => {
      initial: false,
    });
   const [showPersonalModal, setShowPersonalModal] = useState(false);
+  const [ profil, setprofil] = useState<PersonalInfo>()
   const {authUser} = useAuth()
   const {profile} = useAuthStore()
   const onEditPersonal = () => {
@@ -46,29 +48,31 @@ export const PersonalInformationSection = () => {
           updatedFields.lastName = newInfo.lastName;
         }
         if (newInfo.phoneNumber !== profile.phoneNumber) {
-          updatedFields.phoneNumber = newInfo.phoneNumber;
+          updatedFields.phoneNumber = Number(newInfo.phoneNumber);
         }
         if (newInfo.bio !== profile.bio) {
           updatedFields.bio = newInfo.bio;
         }
         if (newInfo.photoUrl !== profile.photoUrl) {
-          updatedFields.photoUrl = newInfo.photoUrl;
+          if (photoUrl!==null) { 
+            updatedFields.photoUrl = photoUrl;
+          }else{
+            updatedFields.photoUrl = profile.photoUrl;
+          }
         }
       
         // Vérifier s'il y a des champs à mettre à jour
         if (Object.keys(updatedFields).length > 0) {
-          const phone = Number(newInfo.phoneNumber)
 
           const updateData = {
             ...updatedFields,
-            phoneNumber: phone,
-            photoUrl: photoUrl,
           };
           const updatedProfile = await AuthService.createUserProfile(
             authUser.id,
             updateData as PersonalInfo
           );
           if (updatedProfile) {
+            setprofil(updatedProfile)
             toast.success(
               "Informations personnelles mises à jour avec succès !"
             );
@@ -106,15 +110,17 @@ export const PersonalInformationSection = () => {
   return (
     <div className="bg-white rounded-lg shadow-md p-6 mb-auto">
       <div className="flex justify-between items-center gap-9 mb-4">
-        <h2 className="text-xl font-bold text-gray-900">
+        <Typography variant="lead" component="h3" className="font-bold">
           Informations personnelles
-        </h2>
+        </Typography>
         <button
           onClick={onEditPersonal}
-          className="flex items-center space-x-1 text-gray-500 hover:text-gray-700"
+          className="flex items-center space-x-1 text-primary-500 hover:text-primary-700"
         >
           <EditIcon className="w-4 h-4" />
-          <span className="text-sm">Modifier</span>
+          <Typography variant="caption3" component="span" theme="primary">
+            Modifier
+          </Typography>
         </button>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-y-4 gap-x-8">
@@ -122,7 +128,9 @@ export const PersonalInformationSection = () => {
           <h4 className="text-xs text-gray-500 uppercase font-semibold">
             Prénom
           </h4>
-          <p className="text-base text-gray-800">{profile?.lastName}</p>
+          <p className="text-base text-gray-800">
+            {profile?.lastName || profil?.lastName}
+          </p>
         </div>
         <div>
           <h4 className="text-xs text-gray-500 uppercase font-semibold">Nom</h4>

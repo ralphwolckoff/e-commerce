@@ -1,40 +1,47 @@
+import GridShape from "@/common/GridShape";
+import Image from "next/image";
 import Link from "next/link";
-import Footer from "@/components/navigation/footer";
+import React from "react";
 
-export default function NotFoundPage() {
+export default function NotFound() {
   return (
-    <>
-      <div className="flex flex-col items-center justify-center min-h-screen bg-white px-4 py-8 text-center">
-        <div className="relative mb-8 select-none">
-          \
-          <div className="relative text-[15rem] md:text-[20rem] lg:text-[25rem] font-extrabold leading-none tracking-tight text-gray-200">
-            <span className="inline-block relative bg-[url(/assets/imgs/pexels-fotoaibe.jpg)] bg-clip-text bg-left text-transparent">
-              4
-            </span>
-            <span className="inline-block relative bg-[url(/assets/imgs/pexels-fotoaibe.jpg)] bg-clip-text bg-center text-transparent">
-              0
-            </span>
-            <span className="inline-block relative bg-[url(/assets/imgs/pexels-fotoaibe.jpg)] bg-clip-text bg-right text-transparent">
-              4
-            </span>
-          </div>
-        </div>
-
-        <h1 className="text-4xl md:text-5xl font-bold text-gray-800 mb-4">
-          Oops! Page not Found
+    <div className="relative flex flex-col items-center justify-center min-h-screen p-6 overflow-hidden z-1">
+      <GridShape />
+      <div className="mx-auto w-full max-w-[242px] text-center sm:max-w-[472px]">
+        <h1 className="mb-8 font-bold text-gray-800 text-title-md dark:text-white/90 xl:text-title-2xl">
+          ERROR
         </h1>
-        <p className="text-gray-600 text-lg max-w-lg mb-8">
-          The page you are looking for cannot be found, take a break before
-          trying again
+
+        <Image
+          src="/assets/error/404.svg"
+          alt="404"
+          className="dark:hidden"
+          width={472}
+          height={152}
+        />
+        <Image
+          src="/assets/error/404-dark.svg"
+          alt="404"
+          className="hidden dark:block"
+          width={472}
+          height={152}
+        />
+
+        <p className="mt-10 mb-6 text-base text-gray-700 dark:text-gray-400 sm:text-lg">
+          We can’t seem to find the page you are looking for!
         </p>
 
-        <Link href="/">
-          <button className="bg-yellow-500 text-gray-900 px-8 py-3 rounded-md font-semibold text-lg hover:bg-yellow-600 transition duration-300 shadow-md">
-            Go To Home Page
-          </button>
+        <Link
+          href="/"
+          className="inline-flex items-center justify-center rounded-lg border border-gray-300 bg-white px-5 py-3.5 text-sm font-medium text-gray-700 shadow-theme-xs hover:bg-primary hover:text-gray-800 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-pimary dark:hover:text-white"
+        >
+          Back to Home Page
         </Link>
       </div>
-      <Footer />
-    </>
+      {/* <!-- Footer --> */}
+      <p className="absolute text-sm text-center text-gray-500 -translate-x-1/2 bottom-6 left-1/2 dark:text-gray-400">
+        &copy; {new Date().getFullYear()} - Shop Online
+      </p>
+    </div>
   );
 }

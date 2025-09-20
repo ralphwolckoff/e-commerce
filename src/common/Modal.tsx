@@ -1,7 +1,7 @@
-"use client"; // Ce composant interagit avec l'utilisateur et gère l'état
+"use client";
 
 import { useEffect, useRef } from "react";
-import { XMarkIcon } from "@heroicons/react/24/outline"; // Pour l'icône de fermeture
+import { XMarkIcon } from "@heroicons/react/24/outline";
 import clsx from "clsx";
 
 interface ModalProps {
@@ -60,7 +60,7 @@ export default function Modal({
 
   const sizeClasses = {
     xm: "max-w-[300px] max-h-[450px]",
-    sm: "max-w-[400px]",
+    sm: "max-w-[500px]",
     md: "max-w-xl",
     lg: "max-w-3xl",
     xl: "max-w-5xl",
@@ -76,7 +76,6 @@ export default function Modal({
       <div
         ref={modalRef}
         className={`relative bg-white rounded-lg shadow-xl overflow-hidden w-full ${sizeClasses[size]} transform transition-all duration-300 scale-100 opacity-100`}
-        // Vous pouvez ajouter des animations ici, par exemple en utilisant 'animate-fade-in' si défini dans votre CSS
       >
         <div className="flex justify-between items-center p-5 bg-primary  border-b border-gray-200">
           <h3 className="text-xl  font-semibold text-gray">{title}</h3>
@@ -89,7 +88,7 @@ export default function Modal({
           </button>
         </div>
 
-        <div className="p-6 ">{children}</div>
+        <div className="py-6 ">{children}</div>
       </div>
     </div>
   );

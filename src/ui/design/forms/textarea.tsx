@@ -9,6 +9,7 @@ interface Props {
   errors: any;
   errorMsg?: string;
   id: string;
+  defaultValue?:string
   required?: boolean; 
   isAutoCompleted?: boolean;
   label?: string;
@@ -19,6 +20,7 @@ export const Textarea = ({
   placeholder,
   row= 5,
   register,
+  defaultValue,
   errors,
   errorMsg = "Tu dois enregister ce champ",
   id,
@@ -40,6 +42,7 @@ export const Textarea = ({
       <textarea
         rows={row}
         placeholder={placeholder}
+        defaultValue={defaultValue}
         className={clsx(
           isLoading
             ? "bg-gray-300 focus:ring-gray-300 cursor-not-allowed"

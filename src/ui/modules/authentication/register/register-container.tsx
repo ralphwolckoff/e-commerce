@@ -5,11 +5,13 @@ import { toast } from "react-toastify";
 import { useToggle } from "@/hooks/use-toggle";
 import { AxiosError } from "axios";
 import { AuthService } from "@/services/authService";
+import { useRouter } from "next/router";
 
 export const RegisterContainer = () => {
   const { value: isLoading, setValue: setIsLoading } = useToggle({
     initial: false,
   });
+  const router = useRouter()
   const {
     handleSubmit,
     formState: { errors },
@@ -26,6 +28,7 @@ export const RegisterContainer = () => {
       const formData = {  email, password, role };
       await AuthService.registers(formData);
       toast.success("inscription reussi");
+      router.push("/connexion")
       
     } catch (err) {
       const axiosError = err as AxiosError;

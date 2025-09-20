@@ -4,20 +4,21 @@
 import { useState, useRef, useEffect } from "react";
 import { toast } from "react-toastify";
 import { useAuth } from "@/context/AuthContext";
-import { Modal } from "../modal";
 import { UploadIcon } from "@/components/icons";
 import { useImageStore } from "@/store/imageStore";
 import { FormsType } from "@/types/form";
 import { Input } from "@/ui/design/forms/input";
 import { Textarea } from "@/ui/design/forms/textarea";
 import { Button } from "@/ui/design/button/button";
+import { useAuthStore } from "@/store/authStore";
+import { Modal } from "@/ui/modules/seller/orders/modal";
 
 // On définit les types pour les champs du formulaire et les images
 export interface PersonalInfo {
-  firstName: string;
-  lastName: string;
-  phoneNumber: number;
-  bio: string;
+  firstName?: string;
+  lastName?: string;
+  phoneNumber?: number;
+  bio?: string;
   photoUrl?: string | null;
   email?: string;
 }
@@ -35,6 +36,7 @@ export const EditPersonalInfoModal = ({
   onClose,
 }: EditPersonalModalProps) => {
   const { onSubmit, register, errors, isLoading, handleSubmit } = form;
+  const {profile} = useAuthStore()
 
   const [previewImage, setPreviewImage] = useState<string | null>( null);
   const [uploading, setUploading] = useState(false);
@@ -60,7 +62,7 @@ export const EditPersonalInfoModal = ({
       // Prévisualisation de l'image immédiatement après la sélection
       const reader = new FileReader();
       reader.onloadend = () => {
-        setPreviewImage(reader.result as string);
+        setPreviewImage(reader.result as string || profile?.photoUrl as string);
       };
       reader.readAsDataURL(file);
 
@@ -136,26 +138,28 @@ export const EditPersonalInfoModal = ({
     <Modal
       isOpen={isOpen}
       onClose={onClose}
-      title="Modifier les informations personnelles"
+      // title="Modifier les informations personnelles"
     >
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-        {/* Champs de texte existants */}
+        {
         <Input
           label="Nom :"
           isLoading={isLoading}
           type="text"
           placeholder="Votre nom"
+          defaultValue={profile?.firstName}
           register={register}
           errors={errors}
           errorMsg="tu dois renseigner ce champ"
           id="firstName"
           className="p-2"
-        />
+        />}
         <Input
           label="Prenom"
           isLoading={isLoading}
           type="text"
           placeholder="Votre prénom"
+          defaultValue={profile?.lastName}
           register={register}
           errors={errors}
           errorMsg="tu dois renseigner ce champ"
@@ -167,6 +171,7 @@ export const EditPersonalInfoModal = ({
           isLoading={isLoading}
           type="number"
           placeholder="Téléphone"
+          defaultValue={String(profile?.phoneNumber)}
           register={register}
           errors={errors}
           errorMsg="tu dois renseigner ce champ"
@@ -178,6 +183,7 @@ export const EditPersonalInfoModal = ({
           isLoading={isLoading}
           row={3}
           placeholder="Petite description de vous"
+          defaultValue={profile?.bio || ""}
           register={register}
           errors={errors}
           errorMsg="tu dois renseigner ce champ"
@@ -189,6 +195,13 @@ export const EditPersonalInfoModal = ({
           <label className="block text-sm font-medium text-gray-700">
             Photo de profil
           </label>
+          { profile?.photoUrl && <div className="mt-2 flex flex-col items-center justify-center space-y-2">
+              <img
+                src={profile.photoUrl}
+                alt="Aperçu de la photo de profil"
+                className="w-32 h-32 rounded-full object-cover"
+              />
+            </div>}
           {previewImage ? (
             <div className="mt-2 flex flex-col items-center justify-center space-y-2">
               <img
@@ -229,6 +242,7 @@ export const EditPersonalInfoModal = ({
               >
                 Parcourir les fichiers
               </Button>
+              
               <input
                 type="file"
                 ref={fileInputRef}

@@ -5,20 +5,24 @@ import { Container } from "@/components/container/container";
 import { Typography } from "@/ui/design/typography/Typography";
 import { AuthService } from "@/services/authService";
 import { useAuth } from "@/context/AuthContext";
+import { useRouter } from "next/router";
 
 
 export const FinalStep = ({ isFinalStep }: BaseComponentProps) => {
   const { authUser } = useAuth();
   const { value: isLoading, toggle } = useToggle();
+  const router = useRouter()
 
 
   const handleCloseOnboarding = async () => {
     toggle();
-    // fire();
     if (authUser) {
-      await AuthService.updateUser(authUser.id, {
+      const update= await AuthService.updateUser(authUser.id, {
         onboardingIsCompleted: true,
       });
+      if (update) {
+        router.push("/mon-espace")
+      }
     }
     toggle();
   };

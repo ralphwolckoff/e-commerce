@@ -36,9 +36,9 @@ export function Header() {
 
   const navLinks = [
     { name: "Home", href: "/" },
-    { name: "Products", href: "/products" },
+    { name: "Products", href: "/shop" },
     { name: "About Us", href: "/about" },
-    { name: "FAQ", href: "/faq" },
+    { name: "FAQ", href: "/FAQ" },
     { name: "Contact", href: "/contact" },
   ];
 
@@ -106,11 +106,11 @@ export function Header() {
               {user?.role === Role.CLIENT && (
                 <button
                   onClick={onOpenModal}
-                  className="flex items-center gap-1 cursor-pointer"
+                  className="flex items-center gap-3 cursor-pointer"
                 >
                   <span className="inline-block relative">
                     <ShopIcon />
-                    <span className="flex items-center justify-center font-medium text-2xs absolute -right-2 -top-2.5 bg-primary w-4.5 h-4.5 rounded-full text-white">
+                    <span className="flex items-center justify-center font-medium text-caption4 absolute -right-2 -top-2.5 bg-primary w-4.5 h-4.5 rounded-full text-white">
                       {items.length || 0}
                     </span>
                   </span>
@@ -119,11 +119,11 @@ export function Header() {
                     <Typography
                       variant="caption4"
                       component="span"
-                      className="block text-dark-4 uppercase "
+                      theme="gray"
                     >
-                      cart
+                      Cart
                     </Typography>
-                    <span className="block text-sm text-secondary ">
+                    <span className="block text-caption4 text-secondary ">
                       $ {totalPrice || 0}
                     </span>
                   </div>

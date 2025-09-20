@@ -1,9 +1,7 @@
-import { useAuthStore } from "@/store/authStore";
 import { Typography } from "@/ui/design/typography/Typography";
 import Image from "next/image";
 
 export function TestimonialsSection() {
-    const {profile} = useAuthStore()
   const testimonials = [
     {
       name: "Chuck Norris",
@@ -11,7 +9,7 @@ export function TestimonialsSection() {
       rating: 5,
       comment:
         "They have got a commitment to excellence and a team that truly cares about their work and their customers.",
-      avatar: profile?.photoUrl || "/assets/imgs/character-1.png",
+      avatar: "/assets/user/user-35.jpg",
     },
     {
       name: "Tom Hanks",
@@ -19,7 +17,7 @@ export function TestimonialsSection() {
       rating: 4,
       comment:
         "This team is truly talented and great to work with. They are always professional and on time.",
-      avatar: profile?.photoUrl || "/assets/imgs/character-1.png",
+      avatar: "/assets/user/user-36.jpg",
     },
     {
       name: "Darth Vader",
@@ -27,7 +25,7 @@ export function TestimonialsSection() {
       rating: 5,
       comment:
         "Amazing work! This team is truly talented and great to work with. Highly recommended.",
-      avatar: profile?.photoUrl || "/assets/imgs/character-1.png",
+      avatar: "/assets/user/user-37.jpg",
     },
   ];
 

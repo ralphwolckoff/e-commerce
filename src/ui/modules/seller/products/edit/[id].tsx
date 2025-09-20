@@ -65,7 +65,7 @@ export default function ProductEditPage() {
       } catch (error) {
         console.error("Erreur lors du chargement du produit:", error);
         toast.error("Échec du chargement du produit.");
-        router.push("/seller/dashboard");
+        router.push("/mon-espace/dashboard");
       } finally {
         setLoading(false);
       }
@@ -134,7 +134,6 @@ export default function ProductEditPage() {
         return { ...prev, images: newImages };
       });
 
-      toast.success("Images uploadées avec succès !");
     } catch (error) {
       console.error("Erreur lors de l'upload des images:", error);
       toast.error("Échec de l'upload des images.");
@@ -151,7 +150,6 @@ export default function ProductEditPage() {
     if (imageToDelete.id) {
       try {
         await productService.deleteImage(imageToDelete.id);
-        toast.success("Image supprimée avec succès du serveur !");
       } catch (error) {
         console.error(
           "Échec de la suppression de l'image sur le serveur:",
@@ -201,8 +199,7 @@ export default function ProductEditPage() {
 
       await productService.updateProduct(productId, payload);
 
-      toast.success("Produit mis à jour avec succès !");
-      router.push("/seller/product");
+      router.push("/mon-espace/product");
     } catch (error) {
       console.error("Échec de la mise à jour du produit:", error);
       toast.error("Échec de la mise à jour du produit.");

@@ -119,7 +119,7 @@ export const AvatarStep = ({
             <div className="flex justify-center w-full">
               <UploadImage
                 handleImageSelect={handleImageSelect}
-                imgPreview={imgPreview}
+                imgPreview={imgPreview || store?.logo || ""}
                 isLoading={isLoading}
               />
             </div>

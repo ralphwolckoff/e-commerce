@@ -1,9 +1,8 @@
-import { Modal } from "../modal";
-import { Address } from "@/types/address";
 import { Input } from "@/ui/design/forms/input";
 import { FormsType } from "@/types/form";
 import { Button } from "@/ui/design/button/button";
 import { useAddressStore } from "@/store/addressStore";
+import { Modal } from "@/ui/modules/seller/orders/modal";
 
 interface EditAddressModalProps {
   isOpen: boolean;
@@ -20,13 +19,14 @@ export const EditAddressModal = ({
   const { onSubmit, register, errors, isLoading, handleSubmit } = form;
 
   return (
-    <Modal isOpen={isOpen} onClose={onClose} title="Modifier l'adresse">
+    <Modal isOpen={isOpen} onClose={onClose} >
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
         <Input
           label="Rue :"
           isLoading={isLoading}
           type="text"
-          placeholder={address?.street || "Votre nom"}
+          placeholder="Votre nom"
+          defaultValue={address?.street}
           register={register}
           errors={errors}
           errorMsg="tu dois renseigner ce champ"
@@ -36,7 +36,8 @@ export const EditAddressModal = ({
           label="Ville :"
           isLoading={isLoading}
           type="text"
-          placeholder={address?.city || "Votre nom"}
+          placeholder="Votre nom"
+          defaultValue={address?.city}
           register={register}
           errors={errors}
           errorMsg="tu dois renseigner ce champ"
@@ -46,7 +47,8 @@ export const EditAddressModal = ({
           label="Pays :"
           isLoading={isLoading}
           type="text"
-          placeholder={address?.state || "Votre nom"}
+          placeholder="Votre nom"
+          defaultValue={address?.state}
           register={register}
           errors={errors}
           errorMsg="tu dois renseigner ce champ"
@@ -56,7 +58,8 @@ export const EditAddressModal = ({
           label="Code Postal :"
           isLoading={isLoading}
           type="text"
-          placeholder={address?.zipCode || "Votre nom"}
+          placeholder="Votre nom"
+          defaultValue={address?.zipCode}
           register={register}
           errors={errors}
           errorMsg="tu dois renseigner ce champ"

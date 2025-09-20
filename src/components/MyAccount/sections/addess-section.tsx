@@ -14,7 +14,7 @@ export const AddressSection = () => {
   const [showAddressModal, setShowAddressModal] = useState(false);
     const { address, fetchAddress } = useAddressStore();
   const { authUser } = useAuth();
-  const { value: isLoading, setValue: setIsLoading } = useToggle({
+  const { value: isLoading } = useToggle({
      initial: false,
    });
    const {
@@ -38,6 +38,7 @@ export const AddressSection = () => {
       );
       if (updatedAddress) {
         toast.success("Adresse mise à jour avec succès !");
+        setShowAddressModal(false)
       }
     } catch (error) {
       console.log("echec de l'opération", error);
@@ -54,13 +55,17 @@ export const AddressSection = () => {
   return (
     <div className="bg-white rounded-lg shadow-md p-6">
       <div className="flex justify-between items-center mb-4">
-        <h2 className="text-xl font-bold text-gray-900">Adresse</h2>
+        <Typography variant="lead" component="h3" className="font-bold">
+          Adresse
+        </Typography>
         <button
           onClick={onEditAddress}
-          className="flex items-center space-x-1 text-gray-500 hover:text-gray-700"
+          className="flex items-center space-x-1 text-primary-500 hover:text-primary-700"
         >
           <EditIcon className="w-4 h-4" />
-          <span className="text-sm">Modifier</span>
+          <Typography variant="caption3" component="span" theme="primary">
+            Modifier
+          </Typography>
         </button>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-y-4 gap-x-8">
@@ -128,7 +133,6 @@ export const AddressSection = () => {
           onSubmit,
           isLoading,
         }}
-        
       />
     </div>
   );};

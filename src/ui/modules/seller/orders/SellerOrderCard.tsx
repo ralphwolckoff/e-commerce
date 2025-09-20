@@ -1,12 +1,11 @@
 "use client";
 
-
 import React, { useState } from "react";
 import Image from "next/image";
 import { format } from "date-fns";
 import { Button } from "@/ui/design/button/button";
 import { Order } from "@/types/commands";
-import { Status } from "@/common/status.enum";
+import { Status, Statuts } from "@/common/status.enum";
 import { StatusUpdateModal } from "./status-updateModal";
 import { orderService } from "@/services/orderService";
 import { toast } from "react-toastify";
@@ -16,48 +15,46 @@ interface SellerOrderCardProps {
   order: Order;
 }
 
-export default function SellerOrderCard({
-  order,
-}: SellerOrderCardProps) {
+export default function SellerOrderCard({ order }: SellerOrderCardProps) {
   const isShipped = order.status === "SHIPPED";
   const isDelivered = order.status === "DELIVERED";
-  const isCanceled = order.status === "CANCELED"
+  const isCanceled = order.status === "CANCELED";
 
-  const [showModal, setShowModal] = useState<boolean>(false)
-  const openModal = ()=>{
-    setShowModal(true)
-  }
+  const [showModal, setShowModal] = useState<boolean>(false);
+  const openModal = () => {
+    setShowModal(true);
+  };
 
   const handleUpdateStatus = async (newStatus: Status) => {
-      const orderId = order?.id
-      if (orderId ) {
-        try {
-          console.log({newStatus});
-          await orderService.updateCommandStatus(orderId, newStatus);
-          toast.success(
-            `Commande #${orderId} mise à jour avec le statut : ${newStatus}`
-          );
-        } catch (error) {
-          console.error("Échec de la mise à jour du statut de la commande:", error);
-          toast.error("Échec de la mise à jour du statut de la commande.");
-        }
-        
+    const orderId = order?.id;
+    if (orderId) {
+      try {
+        await orderService.updateCommandStatus(orderId, newStatus);
+        toast.success(
+          `Commande #${orderId} mise à jour avec le statut : ${newStatus}`
+        );
+      } catch (error) {
+        console.error(
+          "Échec de la mise à jour du statut de la commande:",
+          error
+        );
+        toast.error("Échec de la mise à jour du statut de la commande.");
       }
-    };
+    }
+  };
 
   // Utilisation de Number() pour s'assurer que les calculs de prix sont corrects
   const totalOrderPrice = order.items?.reduce(
-    (sum, item) => sum + item.priceAtOrder*item.quantity,
+    (sum, item) => sum + item.priceAtOrder * item.quantity,
     0
   );
-  
 
   return (
     <div className="bg-white p-6 rounded-lg shadow-md mb-6">
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4 pb-4 border-b border-gray-200 mb-4">
         <div>
-          <p className="text-gray-500 text-sm">Order ID</p>
-          <p className="font-bold text-gray-800">#{order.id}</p>
+          <p className="text-gray-500 text-sm">Order ID:</p>
+          <p className="font-bold text-gray-800">{order.id}</p>
         </div>
         <div>
           <p className="text-gray-500 text-sm">Date</p>

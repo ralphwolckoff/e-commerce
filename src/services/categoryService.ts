@@ -16,11 +16,27 @@ interface UpdateCategoryPayload {
 
 
 export const categoryService = {
-
   async getCategoriesByStoreId(storeId: string): Promise<Categorie[]> {
     try {
-      const response = await api.get<Categorie[]>(`/categories?storeId=${storeId}`);
+      const response = await api.get<Categorie[]>(
+        `/categories?storeId=${storeId}/store`
+      );
       return response.data;
+    } catch (error) {
+      const axiosError = error as AxiosError;
+      console.error(
+        "Erreur lors de la récupération des catégories:",
+        axiosError.response?.data || axiosError.message
+      );
+      throw axiosError;
+    }
+  },
+
+  async getCategories(): Promise<Categorie[]> {
+    try {
+      const response = await api.get<Categorie[]>("/categories");
+      return response.data;
+
     } catch (error) {
       const axiosError = error as AxiosError;
       console.error(
@@ -62,7 +78,7 @@ export const categoryService = {
       );
       return response.data;
     } catch (error) {
-      throw error
+      throw error;
     }
   },
 };

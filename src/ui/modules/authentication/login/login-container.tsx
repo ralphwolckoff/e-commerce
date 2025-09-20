@@ -3,44 +3,30 @@ import { LoginView } from "./login.view";
 import { useState } from "react";
 import { LoginFormType } from "@/types/form";
 import { toast } from "react-toastify";
-import z from "zod";
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import {useRouter, useSearchParams } from "next/navigation";
 import { AxiosError } from "axios";
-import { useAuthStore } from "@/store/authStore";
-import { AuthService } from "@/services/authService"; // Importation du service
+import { useAuth } from "@/context/AuthContext";
 
 export const LoginContainer = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const router = useRouter();
-  const pathname = usePathname();
+  const { login } = useAuth()
   const searchParams = useSearchParams();
-  // const callbackUrl = searchParams.get("callbackUrl") || "/";
-
-  const callbackUrl = `${pathname}${
-        searchParams.toString() ? "?" + searchParams.toString() : ""
-      }`;
+  const callbackUrl = searchParams.get("callbackUrl") || "/";
 
   const {
     handleSubmit,
     formState: { errors },
     register,
-    setError,
     reset,
   } = useForm<LoginFormType>();
-
-  const LoginShema = z.object({
-    email: z.string(),
-    password: z.string(),
-  });
 
   const handleSignInUser = async ({ email, password }: LoginFormType) => {
     const formData = { email, password };
     try {
-      const { access_token, user } = await AuthService.login(
+      await login(
         formData
       );
-      console.log({user});
-      useAuthStore.getState().setAuth(true, access_token, user);
       toast.success("Bienvenue à toi !");
       setIsLoading(false);
       reset();

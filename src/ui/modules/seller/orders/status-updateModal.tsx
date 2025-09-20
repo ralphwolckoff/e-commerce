@@ -6,8 +6,6 @@ import { Order } from "@/types/commands";
 import Image from "next/image";
 import { Button } from "@/ui/design/button/button";
 import { Typography } from "@/ui/design/typography/Typography";
-import { Address } from "@/types/address";
-import { addressService } from "@/services/addressService";
 
 interface StatusUpdateModalProps {
   isOpen: boolean;
@@ -23,44 +21,28 @@ export const StatusUpdateModal = ({
   onsave,
   order,
 }: StatusUpdateModalProps) => {
-  // const [address , setAddress] = useState<Address| null>(null)
   const [newStatus, setNewStatus] = useState<Status>(
     order?.status || "PENDING"
-  );
-
-  
-
-  // const fetchAddress =async ()=>{
-  //   try {
-  //     if (order?.addressId) {
-  //       const addressId = order.userId
-  //       const address = await addressService.getAddressById(addressId)
-  //       console.log({address});
-  //       setAddress(address)
-  //     }
-  //   } catch (error) {
-  //     console.log("echec de recuperation de l'address");
-  //   }
-  // }
+  ); 
+  const [submited, setsubmited] = useState(false)
 
   useEffect(() => {
     if (order) {
-      // fetchAddress()
       setNewStatus(order.status);
-      // setDeliveryDate(order.deliveryDate || "");
     }
   }, [order]);
 
   const handleSubmit =  (e: React.FormEvent<HTMLFormElement>)=>{
      e.preventDefault();
     onsave(newStatus)
+    setsubmited(true)
   }
   
 
   return (
     <Modal isOpen={isOpen} onClose={onClose}>
       <h3 className="text-lg font-semibold text-gray-900 mb-4">
-        Order #{order?.orderNumber}
+        Order : {order?.orderNumber}
       </h3>
       <div className="space-y-4 mb-6">
         {order?.items?.map((item) => (
@@ -92,19 +74,25 @@ export const StatusUpdateModal = ({
         <div className="flex flex-col gap-4">
           <Typography variant="caption3" component="span">
             <span className="font-semibold text-gray-800">
-              Address de livraison:
+              Address de livraison :{" "}
             </span>
             {order?.address
               ? `${order.address.street} - ${order.address.city}`
               : order?.shippingAddress
-                ? order.shippingAddress
-                : "Adresse non disponible"}
+              ? order.shippingAddress
+              : "Adresse non disponible"}
           </Typography>
           <Typography variant="caption3" component="span">
             <span className="font-semibold text-gray-800">
-              Contact du client:{" "}
+              Contact du client :{" "}
             </span>
             {order?.user?.profile?.phoneNumber}
+          </Typography>
+          <Typography variant="caption3" component="span">
+            <span className="font-semibold text-gray-800">
+              Methode de paiement :{" "}
+            </span>
+            {order?.paymentMethod}
           </Typography>
         </div>
       </div>
@@ -142,6 +130,7 @@ export const StatusUpdateModal = ({
           <Button
             size="small"
             type="submit"
+            action={() => submited && onClose}
             className="px-4 py-2 text-sm font-medium text-white bg-indigo-600 rounded-md shadow-sm hover:bg-indigo-700 transition-colors"
           >
             Enregistrer

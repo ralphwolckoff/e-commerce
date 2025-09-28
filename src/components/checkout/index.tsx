@@ -1,6 +1,5 @@
 "use client";
 
-import { UserLayout } from "@/components/layout/user-layout";
 import { useAuth } from "@/context/AuthContext";
 import { orderService } from "@/services/orderService";
 import { useAddressStore } from "@/store/addressStore";
@@ -44,7 +43,7 @@ export default function CheckoutPage() {
       }));
       setUseSavedAddress(true);
     }
-  }, [address]);
+  }, [fullAddress]);
 
   const handleInputChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
@@ -154,7 +153,7 @@ export default function CheckoutPage() {
   };
 
   return (
-    <UserLayout withSidebar pageTitle="Paiement">
+    <>
            {" "}
       {orderComplete ? (
         <div className="text-center py-20">
@@ -169,18 +168,17 @@ export default function CheckoutPage() {
           </p>
                    {" "}
           <Link
-            href="/products"
+            href="/shop"
             className="text-lg font-bold text-primary-800 hover:underline"
           >
                         Retourner à la boutique
           </Link>
-                 {" "}
         </div>
       ) : cartItems.length === 0 ? (
         <div className="text-center py-10">
                     <p>Aucune transaction à effectuer.</p>         {" "}
           <Link
-            href="/products"
+            href="/shop"
             className="text-lg font-bold text-primary-800 hover:underline"
           >
                         Retourner à la boutique          {" "}
@@ -422,6 +420,6 @@ export default function CheckoutPage() {
           </form>
         </div>
       )}
-    </UserLayout>
+    </>
   );
 }

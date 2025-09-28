@@ -49,7 +49,7 @@ const ProductItem = ({ item , onQuickView }: { item: Product, onQuickView?: (pro
             }}
             id="newOne"
             aria-label="button for quick view"
-            className="flex items-center justify-center w-9 h-9 rounded-[5px] shadow-1 ease-out duration-200 text-dark bg-white hover:text-blue"
+            className="flex items-center justify-center w-9 h-9 rounded-[5px] cursor-pointer shadow-1 ease-out duration-200 text-dark bg-white hover:text-white hover:bg-gray-400"
           >
             <svg
               className="fill-current"
@@ -86,7 +86,7 @@ const ProductItem = ({ item , onQuickView }: { item: Product, onQuickView?: (pro
             onClick={() => handleItemToWishList()}
             aria-label="button for favorite select"
             id="favOne"
-            className="flex items-center justify-center w-9 h-9 rounded-[5px] shadow-1 ease-out duration-200 text-dark bg-white hover:text-blue"
+            className="flex items-center justify-center w-9 h-9 rounded-[5px] cursor-pointer shadow-1 ease-out duration-200 text-dark bg-white hover:text-white hover:bg-gray-400"
           >
             <svg
               className="fill-current"

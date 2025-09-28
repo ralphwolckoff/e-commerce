@@ -13,7 +13,7 @@ interface CategoryState {
   deleteCategory: (categoryId: string) => void;
 }
 
-export const useCategoryStore = create<CategoryState>((set, get) => ({
+export const useCategoryStore = create<CategoryState>((set) => ({
   category: [],
   loading: false,
   error: null,

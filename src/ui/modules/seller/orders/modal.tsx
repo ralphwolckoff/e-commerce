@@ -116,7 +116,7 @@ export const Modal = ({ isOpen, onClose, children }: ModalProps) => {
   return (
     <div
       className="fixed inset-0 z-[999999999] flex items-center justify-center bg-gray-600/30 bg-opacity-50"
-      onClick={(e) => e.stopPropagation()}
+      onClick={(e) => (e.stopPropagation(), onClose())}
     >
       <div
         ref={modalRef}

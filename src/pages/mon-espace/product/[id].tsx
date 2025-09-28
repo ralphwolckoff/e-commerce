@@ -8,7 +8,7 @@ export default function Page() {
 
   return (
     <>
-      <Seo title="mon espace" description="account" />
+      <Seo title="Shop Online | mon espace" description="account" />
 
       <UserLayout withSidebar pageTitle="Edit Product">
         <ProductEditPage />

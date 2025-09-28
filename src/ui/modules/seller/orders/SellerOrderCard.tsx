@@ -87,7 +87,7 @@ export default function SellerOrderCard({ order }: SellerOrderCardProps) {
         </div>
       </div>
 
-      <div className="space-y-4 mb-6">
+      <div className="grid grid-cols-3 gap-4 mb-6">
         {order.items?.map((item) => (
           <div
             key={item.id}

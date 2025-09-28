@@ -26,7 +26,7 @@ export function WhyChooseUsSection() {
 
   return (
     <section className="py-20 px-4 sm:px-6 lg:px-8 bg-white">
-      <div className="max-w-7xl mx-auto text-center">
+      <div className="max-w-[1170px] mx-auto text-center">
         <Typography variant="h3" component="h2" className=" mb-12">
           Why Choose Us?
         </Typography>

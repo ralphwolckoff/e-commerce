@@ -8,7 +8,7 @@ import { LoginContainer } from "@/ui/modules/authentication/login/login-containe
 export default function Connexion() {
   return (
     <Session sessionStatus={GUEST}>
-      <Seo title="Connexion" description="Page de connexion" />
+      <Seo title="Shop Online | Connexion" description="Page de connexion" />
       <Breadcrumbs />
       <LoginContainer />
       <Footer />

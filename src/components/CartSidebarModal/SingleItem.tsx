@@ -35,7 +35,7 @@ const SingleItem = ({ item }: SingleItemProps) => {
   return (
     <div
       key={item.productId}
-      className="flex items-center justify-between overflow-auto border-b border-gray-300"
+      className="flex items-center justify-between overflow-auto"
     >
       <div className="flex items-center space-x-2">
         <Image
@@ -52,8 +52,10 @@ const SingleItem = ({ item }: SingleItemProps) => {
       <div className="flex flex-col gap-3 ">
         <p className="font-semibold">{item.product.name}</p>
         <div className="flex gap-5">
-          <Typography variant="caption3" component="span">quantite: {item.quantity}</Typography>
-          
+          <Typography variant="caption3" component="span">
+            prix: {item.priceAtOrder} €
+          </Typography>
+
           <div className="flex items-center justify-start">
             <button
               onClick={() => handleQuantityChange(item.productId, -1)}

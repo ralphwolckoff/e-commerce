@@ -3,6 +3,7 @@ import {
 } from "@/components/icons";
 import { useAuthStore } from "@/store/authStore";
 import { Typography } from "@/ui/design/typography/Typography";
+import Image from "next/image";
 
 interface ProfileSectionProps {
   onEdit: () => void;
@@ -24,7 +25,7 @@ export const ProfileSection = ({ onEdit }: ProfileSectionProps) => {
           </button>
         </div>
         <div className="flex flex-col md:flex-row items-center md:items-start space-y-4 md:space-y-0 md:space-x-6">
-          <img
+          <Image
             src={profile?.photoUrl || "/assets/imgs/character-1.png"}
             alt="Photo de profil"
             className="w-24 h-24 rounded-full border-4 border-gray-200"

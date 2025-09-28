@@ -7,7 +7,7 @@ export default function CategoryPage() {
 
   return (
     <>
-      <Seo title="mon espace" description="account" />
+      <Seo title="Shop Online | mon espace" description="account" />
 
       <UserLayout withSidebar pageTitle="Seller Page">
         <CategoryIndex />

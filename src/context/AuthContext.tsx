@@ -44,8 +44,8 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         };
         setAuthUser(users);
         useAuthStore.getState().setUserProfile(profile);
-        const adress = await addressService.getAddress();
-        setAddress(adress);
+        const address = await addressService.getAddress();
+        setAddress(address);
         console.log("Utilisateur restauré depuis le store persistant.", users);
       } catch (error) {
         console.error("Token expiré ou invalide, déconnexion...");

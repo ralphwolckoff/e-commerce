@@ -18,7 +18,6 @@ const SingleItem = ({ item }: { item: Product }) => {
   const [showModal, setShowModal] = useState(false);
 
   // update the QuickView state
-  const handleQuickViewUpdate = () => {};
 
   // add to cart
   const handleAddToCart = () => {
@@ -68,12 +67,11 @@ const SingleItem = ({ item }: { item: Product }) => {
         <div className="absolute right-0 bottom-0 translate-x-full u-w-full flex flex-col gap-2 p-5.5 ease-linear duration-300 group-hover:translate-x-0">
           <button
             onClick={() => {
-              handleQuickViewUpdate();
               openModal();
             }}
             aria-label="button for quick view"
             id="bestOne"
-            className="flex items-center justify-center w-9 h-9 rounded-[5px] shadow-1 ease-out duration-200 text-dark bg-white hover:text-white hover:bg-primary"
+            className="flex items-center justify-center w-9 h-9 rounded-[5px] cursor-pointer shadow-1 ease-out duration-200 text-dark bg-white hover:text-white hover:bg-primary"
           >
             <svg
               className="fill-current"
@@ -102,7 +100,7 @@ const SingleItem = ({ item }: { item: Product }) => {
             onClick={() => handleAddToCart()}
             aria-label="button for add to cart"
             id="addCartOne"
-            className="flex items-center justify-center w-9 h-9 rounded-[5px] shadow-1 ease-out duration-200 text-dark bg-white hover:text-white hover:bg-primary"
+            className="flex items-center justify-center w-9 h-9 rounded-[5px] shadow-1 ease-out duration-200 cursor-pointer text-dark bg-white hover:text-white hover:bg-primary"
           >
             <svg
               className="fill-current"
@@ -137,7 +135,7 @@ const SingleItem = ({ item }: { item: Product }) => {
             onClick={() => {}}
             aria-label="button for add to fav"
             id="addFavOne"
-            className="flex items-center justify-center w-9 h-9 rounded-[5px] shadow-1 ease-out duration-200 text-dark bg-white hover:text-white hover:bg-primary"
+            className="flex items-center justify-center w-9 h-9 rounded-[5px] cursor-pointer shadow-1 ease-out duration-200 text-dark bg-white hover:text-white hover:bg-primary"
           >
             <svg
               className="fill-current"

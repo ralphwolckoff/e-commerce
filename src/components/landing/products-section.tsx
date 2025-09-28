@@ -35,7 +35,7 @@ export function ProductsSection() {
 
   return (
     <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gray-100 ">
-      <div className="max-w-7xl mx-auto text-center">
+      <div className="max-w-[1170px] mx-auto text-center">
         <div className="flex items-center justify-between mx-10">
           <Typography variant="h3" component="h2" className="mb-12">
             Our Products
@@ -45,10 +45,10 @@ export function ProductsSection() {
           </Button>
         </div>
 
-        <div className="grid grid-cols-1 min-h-[403px] sm:grid-cols-3  gap-28">
+        <div className="grid grid-cols-1 min-h-[403px] sm:grid-cols-3 lg:grid-cols-4  gap-9">
           {products.length > 0 ? (
             products
-              .slice(0, 6)
+              .slice(0, 8)
               .map((product) => <ProductItem key={product.id} item={product} />)
           ) : (
             <p className="col-span-4 text-center text-gray-500">

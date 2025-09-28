@@ -60,6 +60,7 @@ export const ChevronUpIcon = (props: React.SVGProps<SVGSVGElement>) => (
 export const GridIcon = (props: React.SVGProps<SVGSVGElement>) => (
   <svg {...props} fill="currentColor" viewBox="0 0 24 24">
     <path d="M4 4h7v7H4V4zm0 9h7v7H4v-7zm9-9h7v7h-7V4zm9 9h7v7h-7v-7z" />
+    <path d="M4 4h7v7H4V4zm0 9h7v7H4v-7zm9-9h7v7h-7V4zm9 9h7v7h-7v-7z" />
   </svg>
 );
 
@@ -217,6 +218,7 @@ export const MenuIcon = (props: React.SVGProps<SVGSVGElement>) => (
 
 export const OrderIcon = (props: React.SVGProps<SVGSVGElement>) => (
   <svg
+  {...props}
     className="fill-current"
     width="22"
     height="22"

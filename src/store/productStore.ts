@@ -5,8 +5,10 @@ import { create } from "zustand";
 
 interface ProductState {
   products: Product[];
+  vendorProducts: Product[];
   loading: boolean;
   error: string | null;
+  setVendorProducts: (products: Product[]) => void;
   setProduct: (products:Product[]) => void
   addProduct: (newProduct: Product) => void;
   updateProduct: (updatedProduct: Product) => void;
@@ -15,10 +17,12 @@ interface ProductState {
 
 export const useProductStore = create<ProductState>((set, get) => ({
   products: [],
+  vendorProducts: [],
   loading: false,
   error: null,
 
   setProduct: (products) => set({ products: products }),
+  setVendorProducts: (products) => set({ vendorProducts: products }),
 
   addProduct: (newProduct) =>
     set((state) => ({

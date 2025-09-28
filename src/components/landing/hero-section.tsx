@@ -25,7 +25,7 @@ export function HeroSection() {
             aliquip ex ea commodo consequat.
           </Typography>
           <Button
-            baseUrl="/products"
+            baseUrl="/shop"
             className="font-bold rounded-full"
           >
             Buy Now

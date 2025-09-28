@@ -20,6 +20,7 @@ export default function UserInfoModalContent() {
       router.push("/");
     } catch (error) {
       toast.error("Erreur lors de la déconnexion:");
+      return error
     }
   };
 

@@ -25,8 +25,8 @@ const CartSidebarModal = ({ isOpen, onClose }: CartSidebarModalProps) => {
       className="top-20 right-0"
     >
       <div className="flex items-center justify-end ">
-        <div className="w-full max-w-[500px] shadow-1 bg-white px-4 sm:px-7.5 lg:px-11">
-          <div className="h-[40vh] overflow-y-auto no-scrollbar ">
+        <div className="w-full shadow-1 px-4 sm:px-7.5 lg:px-11">
+          <div className="h-[55vh] overflow-y-auto no-scrollbar ">
             <div className="flex flex-col  gap-6 ">
               {cartItems.length > 0 ? (
                 cartItems.map((item, key) => (
@@ -38,7 +38,7 @@ const CartSidebarModal = ({ isOpen, onClose }: CartSidebarModalProps) => {
             </div>
           </div>
 
-          <div className="border-t border-gray-3 bg-white pt-5 pb-4 sm:pb-7.5 lg:pb-11 mt-7.5 sticky bottom-0">
+          <div className="border-t border-gray-3 bg-white pt-5   mt-7.5 sticky bottom-0">
             <div className="flex items-center justify-between gap-5 mb-6">
               <Typography
                 variant="lead"
@@ -46,7 +46,7 @@ const CartSidebarModal = ({ isOpen, onClose }: CartSidebarModalProps) => {
                 theme="gray"
                 className="font-bold"
               >
-                Subtotal:
+                Total:
               </Typography>
               <Typography
                 variant="lead"

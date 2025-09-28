@@ -134,7 +134,7 @@ export const ShopWithoutSidebar = () => {
   };
 
   return (
-    <div className=" mx-auto px-4 py-8 md:flex-row space-y-6 md:space-y-0 md:space-x-8">
+    <div className="max-w-[1370px] mx-auto px-4 py-8 md:flex-row space-y-6 md:space-y-0 md:space-x-8">
       {/* Liste des produits */}
       <div className="px-4 py-8">
         <div className="flex flex-col sm:flex-row justify-between items-center bg-white rounded-lg shadow-md p-4 mb-6 space-y-4 sm:space-y-0">

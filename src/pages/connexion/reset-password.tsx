@@ -5,8 +5,11 @@ import ResetPasswordPage from "@/ui/modules/authentication/forget-password/forge
 
 export default function Register() {
   return (
-    <Session  sessionStatus={GUEST} >
-      <Seo title="Inscription" description="Page d'inscription" />
+    <Session sessionStatus={GUEST}>
+      <Seo
+        title="Shop Online | Réinitialisation de mot de passe"
+        description="Page d'inscription"
+      />
       <ResetPasswordPage />
     </Session>
   );

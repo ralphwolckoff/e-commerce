@@ -36,7 +36,7 @@ export default function ProductList() {
     if (!authUserIsLoading && store) {
       try {
         const res = await productService.getStoreProducts(store.id);
-        useProductStore.getState().setProduct(res);
+        useProductStore.getState().setVendorProducts(res);
         setAllProducts(res);
         setLoading(false);
       } catch (err) {

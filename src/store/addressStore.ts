@@ -22,7 +22,7 @@ export const useAddressStore = create<AddressStoreState>((set) => ({
     try {
       const address = await addressService.getAddress();
       set({ address, isLoading: false });
-    } catch (err) {
+    } catch (error) {
       set({
         error: "Échec de la récupération de l'adresse.",
         isLoading: false,

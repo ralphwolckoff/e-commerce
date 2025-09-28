@@ -128,7 +128,7 @@ export const ShopPage = () => {
   };
 
   return (
-    <div className="container mx-auto px-4 py-8 flex flex-col md:flex-row space-y-6 md:space-y-0 md:space-x-8">
+    <div className="max-w-[1370px] container mx-auto px-4 py-8 flex flex-col md:flex-row space-y-6 md:space-y-0 md:space-x-8">
       {/* Panneau latéral de filtres */}
       <div className="w-full md:w-1/4 bg-white rounded-lg shadow-md p-6 h-fit">
         <div className="flex justify-between items-center mb-4">
@@ -157,7 +157,7 @@ export const ShopPage = () => {
                     type="checkbox"
                     checked={selectedCategories.includes(category)}
                     onChange={() => handleCategoryChange(category)}
-                    className="rounded text-indigo-600 focus:ring-indigo-500"
+                    className="rounded text-primary-600 focus:ring-primary-500"
                   />
                   <span className="ml-2">{category}</span>
                   <span className="ml-auto text-gray-400 text-sm">

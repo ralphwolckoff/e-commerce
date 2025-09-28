@@ -6,6 +6,7 @@ import { Order } from "@/types/commands";
 import Image from "next/image";
 import { Button } from "@/ui/design/button/button";
 import { Typography } from "@/ui/design/typography/Typography";
+import { on } from "events";
 
 interface StatusUpdateModalProps {
   isOpen: boolean;
@@ -44,7 +45,7 @@ export const StatusUpdateModal = ({
       <h3 className="text-lg font-semibold text-gray-900 mb-4">
         Order : {order?.orderNumber}
       </h3>
-      <div className="space-y-4 mb-6">
+      <div className="grid grid-cols-3 gap-4 mb-6">
         {order?.items?.map((item) => (
           <div
             key={item.id}
@@ -71,7 +72,8 @@ export const StatusUpdateModal = ({
             </div>
           </div>
         ))}
-        <div className="flex flex-col gap-4">
+      </div>
+        <div className="flex flex-col gap-4 mb-6">
           <Typography variant="caption3" component="span">
             <span className="font-semibold text-gray-800">
               Address de livraison :{" "}
@@ -95,7 +97,6 @@ export const StatusUpdateModal = ({
             {order?.paymentMethod}
           </Typography>
         </div>
-      </div>
       <form onSubmit={handleSubmit} className="space-y-4">
         <div>
           <label
@@ -130,7 +131,9 @@ export const StatusUpdateModal = ({
           <Button
             size="small"
             type="submit"
-            action={() => submited && onClose}
+            action={() => {
+              onClose();
+            }}
             className="px-4 py-2 text-sm font-medium text-white bg-indigo-600 rounded-md shadow-sm hover:bg-indigo-700 transition-colors"
           >
             Enregistrer

@@ -4,7 +4,10 @@ import { OnboardingContainer } from "@/ui/modules/onboarding/onboarding-containe
 export default function Onboarding() {
   return (
     <>
-      <Seo title="onboarding" description="Description de page onboarding" />
+      <Seo
+        title="Shop Online | onboarding"
+        description="Description de page onboarding"
+      />
       <OnboardingContainer />
     </>
   );

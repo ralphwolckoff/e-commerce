@@ -7,7 +7,7 @@ export default function DashboardPage() {
 
   return (
     <>
-      <Seo title="mon espace" description="account" />
+      <Seo title="Shop Online | mon espace" description="account" />
       <UserLayout withSidebar pageTitle="Seller Page">
         <SellerDashboardPage />
       </UserLayout>

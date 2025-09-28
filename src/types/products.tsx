@@ -3,7 +3,6 @@
 import { Category } from "./category";
 import { OrderItem } from "./commands";
 import { Store } from "./store";
-import { Decimal } from "@prisma/client/runtime/library";
 
 
 export interface Images {
@@ -43,7 +42,7 @@ export interface Product {
   storeId: string;
   categoryId: string;
   name: string;
-  price: Decimal;
+  price: number;
   description: string;
   stock: number;
   isFeatured: boolean;

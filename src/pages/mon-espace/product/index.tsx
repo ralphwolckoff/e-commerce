@@ -11,7 +11,7 @@ export default function ProductManagementPage() {
 
   return (
     <>
-      <Seo title="mon espace" description="account" />
+      <Seo title="Shop Online | mon espace" description="account" />
 
       <UserLayout withSidebar pageTitle="Product Management">
         <div className="container mx-auto px-4 py-8">

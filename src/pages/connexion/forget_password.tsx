@@ -7,7 +7,7 @@ export default function ForgetPassword() {
   return (
     <Session sessionStatus={GUEST}>
       <Seo
-        title="Récupération de mot de passe"
+        title="Shop Online | Récupération de mot de passe"
         description="Récupération de mot de passe"
       />
       <ForgotPasswordPage />

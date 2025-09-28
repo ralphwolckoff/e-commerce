@@ -5,7 +5,10 @@ import ShopDetails from "@/components/products/ShowDetails/[id]";
 export default function Home() {
   return (
     <>
-      <Seo title="Detail produit" description="tout sur le produit" />
+      <Seo
+        title="Shop Online | Detail produit"
+        description="tout sur le produit"
+      />
       <Layout>
         <ShopDetails />
       </Layout>

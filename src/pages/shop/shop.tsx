@@ -6,7 +6,7 @@ import { ShopWithoutSidebar } from "@/ui/modules/shop/ShopWithoutSidebar";
 export default function Home() {
   return (
     <>
-      <Seo title="Shop" description="tout sur les produits" />
+      <Seo title="Shop Online | Shop" description="tout sur les produits" />
       <Layout>
         <FeaturesBanner />
         <ShopWithoutSidebar />

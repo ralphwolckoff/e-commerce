@@ -6,7 +6,7 @@ import { ShopPage } from "@/ui/modules/shop";
 export default function Home() {
   return (
     <>
-      <Seo title="Shop" description="tout sur les produits" />
+      <Seo title="Shop Online | Shop" description="tout sur les produits" />
       <Layout>
         <FeaturesBanner />
         <ShopPage />

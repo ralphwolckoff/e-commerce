@@ -8,7 +8,7 @@ import { RegisterContainer } from "@/ui/modules/authentication/register/register
 export default function Register() {
   return (
     <Session sessionStatus={GUEST}>
-      <Seo title="Inscription" description="Page d'inscription" />
+      <Seo title="Shop Online | Inscription" description="Page d'inscription" />
       <Breadcrumbs />
       <RegisterContainer />
       <Footer />

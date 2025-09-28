@@ -5,7 +5,7 @@ import App from "@/components/MyAccount";
 export default function Page() {
   return (
     <>
-      <Seo title="mon compte" description="account" />
+      <Seo title="Shop Online | mon compte" description="account" />
       <UserLayout withSidebar pageTitle="Mon Compte">
         <App />
       </UserLayout>

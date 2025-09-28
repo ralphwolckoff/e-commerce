@@ -1,7 +1,7 @@
 
 "use client";
 
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, useCallback } from "react";
 import { toast } from "react-toastify";
 import { useAuth } from "@/context/AuthContext";
 import { UploadIcon } from "@/components/icons";
@@ -12,6 +12,7 @@ import { Textarea } from "@/ui/design/forms/textarea";
 import { Button } from "@/ui/design/button/button";
 import { useAuthStore } from "@/store/authStore";
 import { Modal } from "@/ui/modules/seller/orders/modal";
+import Image from "next/image";
 
 // On définit les types pour les champs du formulaire et les images
 export interface PersonalInfo {
@@ -51,45 +52,49 @@ export const EditPersonalInfoModal = ({
     }
   };
 
-  const handleUploadImage = async (file: File) => {
-    if (!authUser?.id) {
-      toast.error("Utilisateur non authentifié.");
-      return;
-    }
-
-    setUploading(true);
-    try {
-      // Prévisualisation de l'image immédiatement après la sélection
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        setPreviewImage(reader.result as string || profile?.photoUrl as string);
-      };
-      reader.readAsDataURL(file);
-
-      // Création du FormData pour l'upload
-      const uploadFormData = new FormData();
-      uploadFormData.append("file", file);
-      uploadFormData.append("userId", authUser.id);
-
-      const response = await fetch("/api/upload-avatar", {
-        method: "POST",
-        body: uploadFormData,
-      });
-
-      if (!response.ok) {
-        throw new Error("Échec du téléversement de l'image.");
+  const handleUploadImage = useCallback(
+    async (file: File) => {
+      if (!authUser?.id) {
+        toast.error("Utilisateur non authentifié.");
+        return;
       }
 
-      const data = await response.json();
-      const newAvatarUrl = data.newAvatarUrl;
-      useImageStore.getState().setUserAvatar(newAvatarUrl);
-    } catch (error) {
-      console.error("Erreur lors du téléversement de l'image:", error);
-      setPreviewImage(typeof previewImage === "string" ? previewImage : null);
-    } finally {
-      setUploading(false);
-    }
-  };
+      setUploading(true);
+      try {
+        // Prévisualisation de l'image immédiatement après la sélection
+        const reader = new FileReader();
+        reader.onloadend = () => {
+          setPreviewImage(
+            (reader.result as string) || (profile?.photoUrl as string)
+          );
+        };
+        reader.readAsDataURL(file); // Création du FormData pour l'upload
+
+        const uploadFormData = new FormData();
+        uploadFormData.append("file", file);
+        uploadFormData.append("userId", authUser.id);
+
+        const response = await fetch("/api/upload-avatar", {
+          method: "POST",
+          body: uploadFormData,
+        });
+
+        if (!response.ok) {
+          throw new Error("Échec du téléversement de l&apos;image.");
+        }
+
+        const data = await response.json();
+        const newAvatarUrl = data.newAvatarUrl;
+        useImageStore.getState().setUserAvatar(newAvatarUrl);
+      } catch (error) {
+        console.error("Erreur lors du téléversement de l&apos;image:", error);
+        setPreviewImage(typeof previewImage === "string" ? previewImage : null);
+      } finally {
+        setUploading(false);
+      }
+    },
+    [authUser, profile, previewImage]
+  );
 
   // Logique du glisser-déposer (Drag and Drop)
   useEffect(() => {
@@ -196,7 +201,7 @@ export const EditPersonalInfoModal = ({
             Photo de profil
           </label>
           { profile?.photoUrl && <div className="mt-2 flex flex-col items-center justify-center space-y-2">
-              <img
+              <Image
                 src={profile.photoUrl}
                 alt="Aperçu de la photo de profil"
                 className="w-32 h-32 rounded-full object-cover"
@@ -205,7 +210,7 @@ export const EditPersonalInfoModal = ({
           {previewImage ? (
             <div className="mt-2 flex flex-col items-center justify-center space-y-2">
               <img
-                src={previewImage}
+                src={String(previewImage)}
                 alt="Aperçu de la photo de profil"
                 className="w-32 h-32 rounded-full object-cover"
               />

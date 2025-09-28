@@ -62,7 +62,7 @@ export default function OrderManagementPage() {
 
   return (
     <>
-      <Seo title="command" description="command" />
+      <Seo title="Shop Online | mon espace | commandes " description="command" />
       <UserLayout withSidebar pageTitle="commandes">
         <div className="p-8">
           <div className="max-w-4xl mx-auto">

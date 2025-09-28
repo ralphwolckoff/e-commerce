@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import React, { useState } from "react";
 
 const questionsAnswers = [
@@ -135,7 +136,7 @@ export const FAQComponent = () => {
       <div className="text-center mb-12">
         <p className="uppercase text-sm font-semibold text-gray-500">FAQ</p>
         <h2 className="text-3xl font-bold text-gray-800 mt-2">
-          Question? <span className="text-yellow-600">Look here.</span>
+          Question? <span className="text-primary-600">Look here.</span>
         </h2>
       </div>
 
@@ -153,11 +154,11 @@ export const FAQComponent = () => {
 
       <div className="mt-16 text-center">
         <h3 className="text-2xl font-bold text-gray-800">
-          Still have a <span className="text-yellow-600">questions?</span>
+          Still have a <span className="text-primary-600">questions?</span>
         </h3>
         <button className="mt-6 inline-flex items-center px-6 py-3 rounded-full bg-black text-white font-semibold shadow-md hover:bg-gray-800 transition-colors">
           <span className="mr-2">✨</span>
-          Contact Us
+          <Link href="/contact">Contact Us</Link>
         </button>
       </div>
     </div>

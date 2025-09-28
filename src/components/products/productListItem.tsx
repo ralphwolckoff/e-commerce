@@ -50,14 +50,14 @@ const ProductListItem = ({ item }: { item: Product }) => {
         <div className="absolute left-0 bottom-0 translate-y-full w-full flex items-center justify-center gap-2.5 pb-5 ease-linear duration-200 group-hover:translate-y-0">
           <button
             onClick={onOpenModal}
-            className="p-2 bg-white rounded-full text-gray-800 hover:bg-gray-200 transition-colors"
+            className="p-2 bg-white rounded-full text-gray-800 cursor-pointer hover:bg-gray-400 transition-colors"
           >
             <EyeIcon className="w-5 h-5" />
           </button>
           <Button action={() => handleAddToCart()} size="very-small">
             Add to cart
           </Button>
-          <button className="p-2 bg-white rounded-full text-gray-800 hover:bg-gray-200 transition-colors">
+          <button className="p-2 bg-white rounded-full text-gray-800 cursor-pointer hover:bg-gray-400 transition-colors">
             <HeartIcon className="w-5 h-5" />
           </button>
         </div>

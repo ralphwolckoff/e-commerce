@@ -145,7 +145,7 @@ export const ShopByCategory = () => {
           Retour
         </Link>
       </div>
-      <div className=" mx-auto px-4 py-8 md:flex-row space-y-6 md:space-y-0 md:space-x-8">
+      <div className="max-w-[1370px] mx-auto px-4 py-8 md:flex-row space-y-6 md:space-y-0 md:space-x-8">
         <div className="text-center">
           {allProducts.length < 2 ? (
             <Typography variant="lead" component="h3" className="mb-6">

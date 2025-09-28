@@ -1,14 +1,14 @@
-import axios from "axios";
+import axios, { AxiosRequestConfig, AxiosError } from "axios";
 import { useAuthStore } from "@/store/authStore";
 
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || "https://pubs-r135.onrender.com"  ;
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || "https://pubs-r135.onrender.com";
 
 const api = axios.create({
   baseURL: API_BASE_URL,
   headers: {
     "Content-Type": "application/json",
   },
-  withCredentials: true,
+  withCredentials: true, // Configuration par défaut pour les appels via 'api'
 });
 
 type FailedRequestPromise = {
@@ -32,7 +32,6 @@ api.interceptors.request.use(
   (config) => {
     const { token } = useAuthStore.getState();
     if (token) {
-      // Assurez-vous que l'en-tête 'Authorization' est toujours défini
       config.headers.set("Authorization", `Bearer ${token}`);
     }
     return config;
@@ -44,15 +43,18 @@ api.interceptors.request.use(
 
 api.interceptors.response.use(
   (response) => response,
-  async (error) => {
-    const originalRequest = error.config;
-    if (error.response.status === 401 && !originalRequest._retry) {
+  async (error: AxiosError) => {
+    const originalRequest = error.config as AxiosRequestConfig & { _retry?: boolean };
+
+    // Vérification de la réponse HTTP et du statut 401
+    if (error.response && error.response.status === 401 && !originalRequest._retry) {
+      
       if (isRefreshing) {
-        return new Promise(function (resolve, reject) {
+        return new Promise<string>(function (resolve, reject) {
           failedQueue.push({ resolve, reject });
         })
           .then((token) => {
-            originalRequest.headers.Authorization = `Bearer ${token}`;
+            originalRequest.headers!.Authorization = `Bearer ${token}`;
             return api(originalRequest);
           })
           .catch((err) => {
@@ -63,25 +65,38 @@ api.interceptors.response.use(
       originalRequest._retry = true;
       isRefreshing = true;
       const store = useAuthStore.getState();
+      const refreshToken = store.refreshToken;
+
+      if (!refreshToken) {
+        store.logout();
+        processQueue(new Error("Refresh token missing, logging out."));
+        return Promise.reject(error);
+      }
 
       try {
-        // Appel à l'endpoint de rafraîchissement
-        const payload = store.refreshToken
-        const response = await api.post("/auth/refresh", {payload});
-        const { accessToken } = response.data;
-        console.log({payload, accessToken});
+        // CORRECTION MAJEURE: S'assurer que withCredentials est défini 
+        // pour que les cookies (où est souvent stocké le Refresh Token) soient envoyés.
+        const response = await axios.post(
+            `${API_BASE_URL}/auth/refresh`, 
+            { refreshToken }, 
+            { withCredentials: true } 
+        ); 
+        
+        const { accessToken, newRefreshToken } = response.data; 
 
         // Mettre à jour le token dans le store et les en-têtes
         store.setAuth(true, accessToken, store.user);
-        api.defaults.headers.common[
-          "Authorization"
-        ] = `Bearer ${accessToken}`;
+        store.setToken(newRefreshToken || refreshToken);
+        api.defaults.headers.common["Authorization"] = `Bearer ${accessToken}`;
 
         processQueue(null, accessToken);
+        
+        originalRequest.headers!.Authorization = `Bearer ${accessToken}`;
         return api(originalRequest);
+
       } catch (refreshError) {
         store.logout();
-        console.log({refreshError});
+        console.error("Token refresh failed, logging out:", refreshError);
         processQueue(refreshError, null);
         return Promise.reject(refreshError);
       } finally {
@@ -89,6 +104,7 @@ api.interceptors.response.use(
       }
     }
 
+    // Gérer les erreurs non-401 ou les erreurs réseau sans réponse
     return Promise.reject(error);
   }
 );

@@ -10,13 +10,9 @@ export const CategoryIndex = () => {
   const [isLoading, setIsLoading] = useState(false);
   const { authUser } = useAuth();
   const {store} = useStoreStore()
-  console.log({categories});
 
   const fetchCategories = async () => {
     setIsLoading(true);
-    if (!authUser) {
-        throw new Error
-    }
     const storeId = store?.id;
     if (storeId) {
       

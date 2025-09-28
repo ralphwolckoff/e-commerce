@@ -96,7 +96,7 @@ export const footerSocialNetwordLinks: Applinks[] = [
 
 export const FooterLinks = [
   {
-    label: "App",
+    label: "App", 
     links: footerApplicationLinks,
   },
   {

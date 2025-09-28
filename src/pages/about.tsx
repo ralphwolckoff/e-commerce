@@ -5,7 +5,6 @@ import { SponsorsSection } from "@/components/landing/sponsors-section";
 import { TestimonialsSection } from "@/components/landing/testimonials-section";
 import { Layout } from "@/components/layout/layout";
 import { Seo } from "@/components/seo/Seo";
-import PromotionCreator from "@/ui/modules/seller/promotion/create";
 
 export default function App() {
   return (
@@ -17,7 +16,6 @@ export default function App() {
         <AboutSection />
         <TestimonialsSection />
         <JoinUsSection />
-        <PromotionCreator />
       </Layout>
     </>
   );

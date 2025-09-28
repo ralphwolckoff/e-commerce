@@ -1,7 +1,7 @@
 import axios, { AxiosRequestConfig, AxiosError } from "axios";
 import { useAuthStore } from "@/store/authStore";
 
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || "https://pubs-r135.onrender.com";
+const API_BASE_URL = "https://pubs-r135.onrender.com";
 
 const api = axios.create({
   baseURL: API_BASE_URL,

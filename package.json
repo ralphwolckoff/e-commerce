@@ -12,6 +12,7 @@
     "@heroicons/react": "^2.2.0",
     "@react-icons/all-files": "^4.1.0",
     "@types/multer": "^2.0.0",
+    "@vercel/speed-insights": "^1.2.0",
     "axios": "^1.10.0",
     "browser-image-compression": "^2.0.2",
     "class-transformer": "^0.5.1",

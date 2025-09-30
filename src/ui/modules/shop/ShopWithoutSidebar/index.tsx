@@ -68,7 +68,6 @@ export const ShopWithoutSidebar = () => {
         setAllProducts(productsData);
       } catch (error) {
         console.error("Failed to fetch products:", error);
-        toast.error("Échec du chargement des produits.");
       } finally {
         setLoading(false);
       }

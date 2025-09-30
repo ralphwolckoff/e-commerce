@@ -35,7 +35,6 @@ export const ShopPage = () => {
         setUniqueCategories(categories);
       } catch (error) {
         console.error("Failed to fetch products:", error);
-        toast.error("Échec du chargement des produits.");
       } finally {
         setLoading(false);
       }

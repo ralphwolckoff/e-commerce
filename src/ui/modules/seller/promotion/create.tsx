@@ -1,19 +1,14 @@
 "use client";
 
-import { useAuth } from "@/context/AuthContext";
 import promotionService from "@/services/promotionService";
 import { useProductStore } from "@/store/productStore";
 import { useStoreStore } from "@/store/storeStore";
 import { useRouter } from "next/router";
-import React, { useState, useEffect, useCallback } from "react";
-
-// Données fictives pour les produits (à remplacer par des données réelles)
-
+import React, { useState, useEffect } from "react";
 
 const PromotionCreator = () => {
   const { vendorProducts } = useProductStore();
   const {store} = useStoreStore()
-  const { authUser } = useAuth();
   const [selectedProduct, setSelectedProduct] = useState(vendorProducts[0]);
   const [discount, setDiscount] = useState(0);
   const [newPrice, setNewPrice] = useState(selectedProduct?.price || 0);
@@ -53,7 +48,6 @@ const router = useRouter();
      finalPrice: Number(newPrice),
      deadline,
      storeId,
-     // L'objet 'message' est créé ici
      message: {
        messageTitle: message.title,
        messageContent: message.content,

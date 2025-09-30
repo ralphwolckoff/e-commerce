@@ -7,7 +7,7 @@ import { Select } from "@/ui/design/forms/select";
 interface Props {
   form: FormsType;
 }
-export const RegisterForm = ({ form }: Props) => {
+export const RegisterForm = ({ form }: Props) => { 
   const { onSubmit, register, errors, isLoading, handleSubmit } = form;
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="pt-8 pb-5 space-y-4">

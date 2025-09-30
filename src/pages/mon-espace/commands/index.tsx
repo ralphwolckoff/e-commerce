@@ -48,18 +48,6 @@ export default function OrderManagementPage() {
     {} as Record<string, typeof orders>
   );
 
-  if (loading) {
-    return <div className="text-center py-10">Chargement des commandes...</div>;
-  }
-
-  if (orders.length === 0) {
-    return (
-      <div className="text-center py-10">
-        Vous n'avez aucune commande à gérer.
-      </div>
-    );
-  }
-
   return (
     <>
       <Seo title="Shop Online | mon espace | commandes " description="command" />
@@ -67,6 +55,15 @@ export default function OrderManagementPage() {
         <div className="p-8">
           <div className="max-w-4xl mx-auto">
             <h1 className="text-3xl font-bold mb-8">Gestion des commandes</h1>
+        {loading && (
+          <div className="text-center py-10">Chargement des commandes...</div>
+        )}
+
+        {!loading && orders.length === 0 && (
+          <div className="text-center py-10">
+            Vous n'avez aucune commande à gérer.
+          </div>
+        )}
             {Object.keys(groupedOrders).map((storeName) => {
               const sortedOrders = groupedOrders[storeName].sort(
                 (a, b) =>

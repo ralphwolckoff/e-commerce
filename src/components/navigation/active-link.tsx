@@ -5,10 +5,12 @@ import { useMemo } from "react";
 
 interface Props {
   href: string;
+  className?: string;
+  onClick?: () => void;
   children: React.ReactNode;
 }
 
-export const ActiveLink = ({ href, children }: Props) => {
+export const ActiveLink = ({ href, children, className, onClick }: Props) => {
   const router = useRouter();
 
   const isActive = useMemo(() => {
@@ -16,7 +18,7 @@ export const ActiveLink = ({ href, children }: Props) => {
   }, [router.pathname, href]);
 
   return (
-    <Link href={href} className={clsx(isActive && "text-primary-900 font-bold")}>
+    <Link href={href} className={clsx(isActive && "text-primary-900 font-bold", className)} onClick={onClick}>
       {children}
     </Link>
   );

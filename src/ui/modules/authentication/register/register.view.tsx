@@ -11,8 +11,8 @@ interface Props {
 }
 export const RegisterView = ({ form }: Props) => {
   return (
-    <Container className="grid grid-cols-2 gap-20 mb-32">
-      <div className="">
+    <Container className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-20 mb-16 lg:mb-32">
+      <div className="hidden lg:block">
         <div className="relative w-full h-[531px]">
           <Image
             fill
@@ -22,9 +22,9 @@ export const RegisterView = ({ form }: Props) => {
           />
         </div>
       </div>
-      <div className=" flex items-center">
-        <Box padding_y="px-5">
-          <div className="flex items-center justify-between">
+      <div className="flex items-center justify-center lg:justify-start">
+        <Box padding_y="p-6 md:p-8 w-full max-w-md lg:max-w-none">
+          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-6">
             <Typography variant="h5" theme="secondary" component="h1">
               Inscription
             </Typography>

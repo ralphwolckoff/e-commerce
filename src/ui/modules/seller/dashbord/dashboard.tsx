@@ -129,7 +129,7 @@ export default function SellerDashboardPage() {
           </div>
         </div>
         <div className="col-span-3 md:col-span-4 sm:col-span-4">
-          <div className="flex flex-col items-center space-y-10">
+          <div className="hidden md:flex lg:flex-col items-center space-y-10">
             <Link
               href="/mon-espace/product"
               className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow"

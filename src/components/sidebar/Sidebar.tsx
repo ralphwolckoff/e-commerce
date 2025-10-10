@@ -387,10 +387,7 @@ export default function Sidebar() {
                         router.push(item.href);
                       }
                     }}
-                    // Les conditions pour masquer "Suivre" et "Moyens" ont été conservées
                     className={clsx(
-                      item.name === "Suivre" && "hidden",
-                      item.name === "Moyens" && "hidden",
                       "flex items-center w-full rounded-md gap-2.5 py-3 px-4.5 ease-out duration-200",
                       {
                         "bg-primary text-white shadow-md":

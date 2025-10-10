@@ -59,7 +59,7 @@ export default function Modal({
   if (!isOpen) return null;
 
   const sizeClasses = {
-    xm: "max-w-[300px] max-h-[450px]",
+    xm: "max-w-[300px] max-h-[500px]",
     sm: "max-w-[500px]",
     md: "max-w-xl",
     lg: "max-w-3xl",
